@@ -1,0 +1,14 @@
+{
+  "apiBasePath": "",
+  "pathReplace": {
+    "[?].*": "",
+    "(account)/[0-9a-zA-Z]{32}": "$1/{accountId}"
+  },
+  "replace": {
+    "secret": ""
+  },
+  "tags": [
+    ["slides"],
+    ["progress", "Task Progress"]
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "har2openapi",
+  "version": "1.0.0",
+  "description": "Convert har file to openapi spec",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "generate": "node index.js generate output/generated.json input/har1.json input/har2.json",
+    "samples": "node index.js samples output/generated.json output/withSchema.json",
+    "merge": "node index.js merge input/master.json output/withSchema.json output/openapi-spec.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@loopback/openapi-v3-types": "^1.2.1",
+    "@types/har-format": "^1.2.4",
+    "@types/node": "^13.13.4"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "js-yaml": "^3.13.1",
+    "json-schema-generator": "^2.0.6",
+    "parse-json": "^5.0.0",
+    "pluralize": "^8.0.0",
+    "sort-json": "^2.0.0"
+  }
+}
