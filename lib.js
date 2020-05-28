@@ -350,7 +350,7 @@ const generateSpec = (inputFilenames, outputFilename, config) => {
         if (item.request.bodySize > 0)
             mergeRequestExample(specMethod, item.request.postData);
         if (item.response.bodySize > 0)
-            mergeResponseExample(specMethod, item.response.status.toString(), item.response.content);
+            mergeResponseExample(specMethod, item.response.status.toString(), item.response.content, method, filteredUrl);
     });
     shortenExamples(spec);
     spec.paths = sortJson(spec.paths, { depth: 200 });
@@ -391,7 +391,7 @@ exports.mergeFiles = mergeFiles;
 const mergeRequestExample = (specMethod, postData) => {
     if (postData.text) {
         try {
-            const data = JSON.parse(postData.text);
+            const data = JSON.parse(postData.encoding == 'base64' ? Buffer.from(postData.text, 'base64').toString() : postData.text);
             if (!specMethod['requestBody']) {
                 specMethod['requestBody'] = {
                     "content": {
@@ -435,37 +435,35 @@ const mergeRequestExample = (specMethod, postData) => {
         }
     }
 };
-const mergeResponseExample = (specMethod, statusString, content) => {
-    if (content.encoding === 'base64') {
-        try {
-            const data = JSON.parse(Buffer.from(content.text, 'base64').toString());
-            delete data['traceback'];
-            if (data !== null) {
-                if (!specMethod.responses[statusString]['content']) {
-                    specMethod.responses[statusString]['content'] = {
-                        "application/json": {
-                            "examples": {
-                                "example-1": {
-                                    "value": {}
-                                }
-                            },
-                            "schema": {
-                                "properties": {},
-                                "type": "object"
+const mergeResponseExample = (specMethod, statusString, content, method, filteredUrl) => {
+    try {
+        const data = JSON.parse(content.encoding == 'base64' ? Buffer.from(content.text, 'base64').toString() : content.text);
+        delete data['traceback'];
+        if (data !== null) {
+            if (!specMethod.responses[statusString]['content']) {
+                specMethod.responses[statusString]['content'] = {
+                    "application/json": {
+                        "examples": {
+                            "example-1": {
+                                "value": {}
                             }
+                        },
+                        "schema": {
+                            "properties": {},
+                            "type": "object"
                         }
-                    };
-                }
-                const examples = specMethod.responses[statusString].content["application/json"].examples['example-1'];
-                examples["value"] = merge(examples["value"], data, { arrayMerge: overwriteMerge });
-                if (data.description)
-                    specMethod.description = data.description;
-                if (data.element)
-                    specMethod.meta['element'] = data.element;
+                    }
+                };
             }
+            const examples = specMethod.responses[statusString].content["application/json"].examples['example-1'];
+            examples["value"] = merge(examples["value"], data, { arrayMerge: overwriteMerge });
+            if (data.description)
+                specMethod.description = data.description;
+            if (data.element)
+                specMethod.meta['element'] = data.element;
         }
-        catch (err) {
-        }
+    }
+    catch (err) {
     }
 };
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;

@@ -396,6 +396,11 @@ const generateSpec = (inputFilenames: string[], outputFilename: string, config: 
         // set original path to last request received
         specMethod.meta.originalPath = item.request.url
 
+        // console.log(filteredUrl, method)
+        // if (method === 'post' && filteredUrl === '/account/users/') {
+        //     console.log('hello')
+        // }
+
         // generate response
         addResponse(item.response.status, method, specMethod)
 
@@ -406,7 +411,7 @@ const generateSpec = (inputFilenames: string[], outputFilename: string, config: 
         if (item.request.bodySize > 0) mergeRequestExample(specMethod, item.request.postData)
 
         // merge response example
-        if (item.response.bodySize > 0) mergeResponseExample(specMethod, item.response.status.toString(), item.response.content)
+        if (item.response.bodySize > 0) mergeResponseExample(specMethod, item.response.status.toString(), item.response.content, method, filteredUrl)
 
         // writeFileSync('test.json', JSON.stringify(item, null, 2))
         // exit(0);
@@ -466,7 +471,7 @@ const mergeRequestExample = (specMethod: OperationObject, postData: any) => {
     // if (postData.mimeType === null) { // data sent
     if (postData.text) { // data sent
         try {
-            const data = JSON.parse(postData.text)
+            const data = JSON.parse(postData.encoding == 'base64' ? Buffer.from(postData.text, 'base64').toString() : postData.text)
 
             if (!specMethod['requestBody']) {
                 specMethod['requestBody'] = {
@@ -513,47 +518,45 @@ const mergeRequestExample = (specMethod: OperationObject, postData: any) => {
     }
 
 }
-const mergeResponseExample = (specMethod: OperationObject, statusString: string, content) => {
-    if (content.encoding === 'base64') {
-        try {
-            const data = JSON.parse(Buffer.from(content.text, 'base64').toString())
+const mergeResponseExample = (specMethod: OperationObject, statusString: string, content, method, filteredUrl) => {
+    try {
+        const data = JSON.parse(content.encoding == 'base64' ? Buffer.from(content.text, 'base64').toString() : content.text)
 
-            // remove data traceback if exists
-            delete data['traceback']
+        // remove data traceback if exists
+        delete data['traceback']
 
-            if (data !== null) {
-                // create response example if it doesn't exist
-                if (!specMethod.responses[statusString]['content']) {
-                    specMethod.responses[statusString]['content'] = {
-                        "application/json": {
-                            "examples": {
-                                "example-1": {
-                                    "value": {}
-                                }
-                            },
-                            "schema": {
-                                "properties": {},
-                                "type": "object"
+        if (data !== null) {
+            // create response example if it doesn't exist
+            if (!specMethod.responses[statusString]['content']) {
+                specMethod.responses[statusString]['content'] = {
+                    "application/json": {
+                        "examples": {
+                            "example-1": {
+                                "value": {}
                             }
+                        },
+                        "schema": {
+                            "properties": {},
+                            "type": "object"
                         }
                     }
                 }
-
-                // merge current response into other response examples
-                const examples = specMethod.responses[statusString].content["application/json"].examples['example-1']
-                examples["value"] = merge(examples["value"], data, {arrayMerge: overwriteMerge})
-
-                // set endpoint description from shoji description
-                if (data.description) specMethod.description = data.description
-
-                // capture metadata
-                if (data.element) specMethod.meta['element'] = data.element
-
             }
 
-        } catch (err) {
+            // merge current response into other response examples
+            const examples = specMethod.responses[statusString].content["application/json"].examples['example-1']
+            examples["value"] = merge(examples["value"], data, {arrayMerge: overwriteMerge})
+
+            // set endpoint description from shoji description
+            if (data.description) specMethod.description = data.description
+
+            // capture metadata
+            if (data.element) specMethod.meta['element'] = data.element
 
         }
+
+    } catch (err) {
+
     }
 
 }
