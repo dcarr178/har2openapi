@@ -1,21 +1,21 @@
 import {argv, exit} from 'process'
-import {Config, generateSamples, generateSpec, mergeFiles} from './lib'
+import {Config, generateSamples, generateSpec, mergeFiles, generateSchema} from './lib'
 
 if (argv.length < 3) {
-    console.log(`Usage: node ${argv[1]} generate outputFilename.json inputHarFile1.json inputHarFile2.json inputHarFile3.json...`)
-    console.log(`Usage: node ${argv[1]} samples inputFilename.json outputFilename.json`)
+    console.log(`Usage: node ${argv[1]} examples inputHarFile1.json inputHarFile2.json inputHarFile3.json...`)
+    console.log(`Usage: node ${argv[1]} schema`)
     console.log(`Usage: node ${argv[1]} merge masterFilename.json toMergeFilename.json outputFilename.json`)
 } else {
     switch (argv[2]) {
-        case 'generate':
+        case 'examples':
 
             // grab input and output filenames
-            if (argv.length < 5) {
-                console.log(`Usage: node ${argv[1]} ${argv[2]} outputFilename.json inputHarFile1.json inputHarFile2.json inputHarFile3.json...`)
+            if (argv.length < 4) {
+                console.log(`Usage: node ${argv[1]} ${argv[2]} inputHarFile1.json inputHarFile2.json inputHarFile3.json...`)
                 exit(0)
             }
-            const outputFilename = argv[3]
-            const inputFilenames = argv.slice(4)
+            const outputFilename = 'output/examples.spec.json'
+            const inputFilenames = argv.slice(3)
 
             // grab config file
             let config: Config
@@ -31,14 +31,15 @@ if (argv.length < 3) {
             generateSpec(inputFilenames, outputFilename, config)
             break;
 
-        case 'samples':
-            if (argv.length < 5) {
-                console.log(`Usage: node ${argv[1]} ${argv[2]} inputFilename.json outputFilename.json`)
+        case 'schema':
+            if (argv.length < 4) {
+                console.log(`Usage: node ${argv[1]} ${argv[2]} examplesFilename.json`)
                 exit(0)
             }
-            const sampleInput = argv[3]
-            const sampleOutput = argv[4]
-            generateSamples(sampleInput, sampleOutput)
+            const exampleFile = argv[3]
+            generateSchema(exampleFile).then(spec => {
+                generateSamples(spec, 'output/schema.spec.json')
+            })
             break;
 
         case 'merge':

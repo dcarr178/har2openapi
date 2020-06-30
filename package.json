@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "generate": "node index.js generate output/generated.json input/har1.json input/har2.json",
-    "samples": "node index.js samples output/generated.json output/withSchema.json",
+    "examples": "node index.js examples input/har1.json input/har2.json input/har3.json",
+    "schema": "node index.js schema output/examples.master.json",
     "merge": "node index.js merge input/master.json output/withSchema.json output/openapi-spec.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,14 +15,20 @@
   "devDependencies": {
     "@loopback/openapi-v3-types": "^1.2.1",
     "@types/har-format": "^1.2.4",
+    "@types/json-schema": "^7.0.4",
     "@types/node": "^13.13.4"
   },
   "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.1",
     "deepmerge": "^4.2.2",
     "js-yaml": "^3.13.1",
+    "json-schema-deref-sync": "^0.13.0",
     "json-schema-generator": "^2.0.6",
+    "json-schema-to-openapi-schema": "^0.4.0",
     "parse-json": "^5.0.0",
     "pluralize": "^8.0.0",
+    "quicktype": "^15.0.245",
+    "quicktype-core": "^6.0.65",
     "sort-json": "^2.0.0"
   }
 }
