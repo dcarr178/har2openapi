@@ -703,7 +703,8 @@ const parseJsonFile = (filename: string): object => {
         exit(1)
     }
 }
-const replaceApos = (s: string): string => s.replace(/'/g, "&apos;")
+const replaceApos = (s:string): string => s; // rapidoc now supports single quote
+// const replaceApos = (s: string): string => s.replace(/'/g, "&apos;")
 const writeExamples = (spec: OpenApiSpec) => {
     const specExamples = {}
     Object.keys(spec.paths).forEach(path => {
@@ -918,6 +919,26 @@ const generateSchema = async (exampleFilename: string) => {
             if (numExamples) {
                 const exampleStats = validateExampleList(masterExamples[path][method].request, `${path} ${method} requests`, exampleFilename)
                 const jsonSchema = await quicktypeJSON('schema', [path, method, 'request'].join("-"), exampleStats.allExamples)
+                if (jsonSchema.properties?.element) {
+                    switch (exampleStats.firstExample.element) {
+                        case 'shoji:entity':
+                            jsonSchema.properties.element = {
+                                $ref: '#/components/schemas/Shoji-entity-element'
+                            }
+                            break;
+                        case 'shoji:catalog':
+                            jsonSchema.properties.element = {
+                                $ref: '#/components/schemas/Shoji-catalog-element'
+                            }
+                            break;
+                        case 'shoji:view':
+                            jsonSchema.properties.element = {
+                                $ref: '#/components/schemas/Shoji-view-element'
+                            }
+                            break;
+
+                    }
+                }
                 if (!methodObject.requestBody) methodObject.requestBody = {
                     content: {
                         "application/json": {}
@@ -933,6 +954,26 @@ const generateSchema = async (exampleFilename: string) => {
                 if (numExamples) {
                     const exampleStats = validateExampleList(masterExamples[path][method].response[statusCode], `${path} ${method} requests`, exampleFilename)
                     const jsonSchema = await quicktypeJSON('schema', [path, method, 'request'].join("-"), exampleStats.allExamples)
+                    if (jsonSchema.properties?.element) {
+                        switch (exampleStats.firstExample.element) {
+                            case 'shoji:entity':
+                                jsonSchema.properties.element = {
+                                    $ref: '#/components/schemas/Shoji-entity-element'
+                                }
+                                break;
+                            case 'shoji:catalog':
+                                jsonSchema.properties.element = {
+                                    $ref: '#/components/schemas/Shoji-catalog-element'
+                                }
+                                break;
+                            case 'shoji:view':
+                                jsonSchema.properties.element = {
+                                    $ref: '#/components/schemas/Shoji-view-element'
+                                }
+                                break;
+
+                        }
+                    }
                     if (!methodObject.responses[statusCode]) {
                         methodObject.responses[statusCode] = {
                             content: {

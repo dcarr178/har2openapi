@@ -546,7 +546,7 @@ const parseJsonFile = (filename) => {
         process_1.exit(1);
     }
 };
-const replaceApos = (s) => s.replace(/'/g, "&apos;");
+const replaceApos = (s) => s;
 const writeExamples = (spec) => {
     const specExamples = {};
     Object.keys(spec.paths).forEach(path => {
@@ -699,6 +699,7 @@ const validateExampleList = (exampleObject, exampleObjectName, exampleFilename) 
     };
 };
 const generateSchema = (exampleFilename) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
     const masterExamples = parseJsonFile(exampleFilename);
     const oldSpec = parseJsonFile('output/examples.spec.json');
     const newSpec = {
@@ -736,6 +737,25 @@ const generateSchema = (exampleFilename) => __awaiter(void 0, void 0, void 0, fu
             if (numExamples) {
                 const exampleStats = validateExampleList(masterExamples[path][method].request, `${path} ${method} requests`, exampleFilename);
                 const jsonSchema = yield quicktypeJSON('schema', [path, method, 'request'].join("-"), exampleStats.allExamples);
+                if ((_a = jsonSchema.properties) === null || _a === void 0 ? void 0 : _a.element) {
+                    switch (exampleStats.firstExample.element) {
+                        case 'shoji:entity':
+                            jsonSchema.properties.element = {
+                                $ref: '#/components/schemas/Shoji-entity-element'
+                            };
+                            break;
+                        case 'shoji:catalog':
+                            jsonSchema.properties.element = {
+                                $ref: '#/components/schemas/Shoji-catalog-element'
+                            };
+                            break;
+                        case 'shoji:view':
+                            jsonSchema.properties.element = {
+                                $ref: '#/components/schemas/Shoji-view-element'
+                            };
+                            break;
+                    }
+                }
                 if (!methodObject.requestBody)
                     methodObject.requestBody = {
                         content: {
@@ -751,6 +771,25 @@ const generateSchema = (exampleFilename) => __awaiter(void 0, void 0, void 0, fu
                 if (numExamples) {
                     const exampleStats = validateExampleList(masterExamples[path][method].response[statusCode], `${path} ${method} requests`, exampleFilename);
                     const jsonSchema = yield quicktypeJSON('schema', [path, method, 'request'].join("-"), exampleStats.allExamples);
+                    if ((_b = jsonSchema.properties) === null || _b === void 0 ? void 0 : _b.element) {
+                        switch (exampleStats.firstExample.element) {
+                            case 'shoji:entity':
+                                jsonSchema.properties.element = {
+                                    $ref: '#/components/schemas/Shoji-entity-element'
+                                };
+                                break;
+                            case 'shoji:catalog':
+                                jsonSchema.properties.element = {
+                                    $ref: '#/components/schemas/Shoji-catalog-element'
+                                };
+                                break;
+                            case 'shoji:view':
+                                jsonSchema.properties.element = {
+                                    $ref: '#/components/schemas/Shoji-view-element'
+                                };
+                                break;
+                        }
+                    }
                     if (!methodObject.responses[statusCode]) {
                         methodObject.responses[statusCode] = {
                             content: {
