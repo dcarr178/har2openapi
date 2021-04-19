@@ -1,4 +1,4 @@
-import {createEmptyApiSpec, OpenApiSpec, OperationObject} from "@loopback/openapi-v3-types";
+import {createEmptyApiSpec, OpenApiBuilder, OpenApiSpec, OperationObject} from "@loopback/openapi-v3-types";
 import * as merge from "deepmerge";
 import {readFileSync, writeFileSync} from 'fs'
 import {Har} from "har-format";
@@ -12,7 +12,8 @@ import {JSONSchema4, JSONSchema6} from 'json-schema'
 import {jsonInputForTargetLanguage, quicktype, InputData, JSONSchemaInput, JSONSchemaStore} from 'quicktype-core'
 import * as refParser from '@apidevtools/json-schema-ref-parser'
 import * as deref from 'json-schema-deref-sync'
-import * as toOpenApiSchema from 'json-schema-to-openapi-schema'
+import * as toOpenApiSchema from '@openapi-contrib/json-schema-to-openapi-schema'
+import * as recursive from 'recursive-readdir'
 
 interface ExampleFile {
     [path: string]: {
@@ -260,11 +261,45 @@ const createXcodeSamples = (spec: OpenApiSpec) => {
             if (lMethod === 'parameters') return
             const method = spec.paths[path][lMethod]
             const samples = []
+            const scrubbedPath = path
+                .replace(/{dataset_id}/g, '0001a')
+                .replace(/{variable_id}/g, '0001b')
+                .replace(/{user_id}/g, '0001c')
+                .replace(/{subvariable_id}/g, '0001d')
+                .replace(/{folder_id}/g, '0001e')
+                .replace(/{slide_id}/g, '0001f')
+                .replace(/{deck_id}/g, '0001g')
+                .replace(/{analysis_id}/g, '0001h')
+                .replace(/{tag_name}/g, '0001i')
+                .replace(/{project_id}/g, '0001j')
+                .replace(/{integration_id}/g, '0001k')
+                .replace(/{integration_partner}/g, '0001l')
+                .replace(/{team_id}/g, '0001m')
+                .replace(/{savepoint_id}/g, '0001n')
+                .replace(/{script_id}/g, '0001o')
+                .replace(/{multitable_id}/g, '0001p')
+                .replace(/{subdomain}/g, '0001q')
+                .replace(/{account_id}/g, '0001r')
+                .replace(/{filter_id}/g, '0001s')
+                .replace(/{geodata_id}/g, '0001t')
+                .replace(/{task_id}/g, '0001u')
+                .replace(/{flag_id}/g, '0001v')
+                .replace(/{source_id}/g, '0001w')
+                .replace(/{batch_id}/g, '0001x')
+                .replace(/{action_hash}/g, '0001y')
+                .replace(/{boxdata_id}/g, '0001z')
+                .replace(/{datasetName}/g, '0001aa')
+                .replace(/{format}/g, '0001ab')
+                .replace(/{dashboard_id}/g, '0001ac')
+
+
+            if (!method['x-code-samples']) method['x-code-samples'] = []
 
             // create curl code
             let data
-            let curlCode = `curl -X ${lMethod.toUpperCase()} ${method.meta.originalPath}`
-            if (!method.meta.originalPath.includes('public')) curlCode += ` \\\n  -H 'Authorization: Bearer 598d9e1105'`
+            const originalPath = `https://app.crunch.io/api${method?.meta?.originalPath || scrubbedPath}`
+            let curlCode = `curl -X ${lMethod.toUpperCase()} ${originalPath}`
+            if (!originalPath.includes('public')) curlCode += ` \\\n  -H 'Authorization: Bearer 598d9e1105'`
             const examples = method.requestBody?.content?.["application/json"]?.examples
             if (examples) {
                 const exampleList = Object.keys(examples)
@@ -281,11 +316,23 @@ const createXcodeSamples = (spec: OpenApiSpec) => {
                 // curlCode += ` \\\n  --data-binary @- << EOF \n${JSON.stringify(data, null, 2)}\nEOF`
                 // curlCode += ` -d '\n  ${JSON.stringify(data, null, 2).replace(/\n/g, '\n  ')}\n'`
             }
-            samples.push({
+
+            // overwrite existing SHELL array element if exists
+            let found = false
+            const shellCodeSample = {
                 lang: "SHELL",
                 source: replaceApos(curlCode),
                 syntaxLang: "bash"
-            })
+            }
+            for (let codeSample in method['x-code-samples']) {
+                if (method['x-code-samples'][codeSample].lang == "SHELL") {
+                    found = true
+                    method['x-code-samples'][codeSample] = shellCodeSample
+                }
+            }
+            if (!found) {
+                method['x-code-samples'].push(shellCodeSample)
+            }
 
             // create javascript code
             const operationVariable = method.operationId.split('-').map((part, index) => index ? capitalize(part) : part).join('').trim()
@@ -293,8 +340,8 @@ const createXcodeSamples = (spec: OpenApiSpec) => {
 
             // turn query string into search params
             let urlVar = ""
-            if (method.meta.originalPath.includes("?")) {
-                const pieces = method.meta.originalPath.split('?')
+            if (originalPath.includes("?")) {
+                const pieces = originalPath.split('?')
                 urlVar = operationVariable + 'URL'
                 jsCode.push(`const ${urlVar} = new URL('${pieces[0]}')`)
                 jsCode.push(`${urlVar}.search = new URLSearchParams({`)
@@ -307,10 +354,10 @@ const createXcodeSamples = (spec: OpenApiSpec) => {
             }
 
             jsCode.push(`const ${operationVariable} = await fetch(`)
-            jsCode.push(`  ${urlVar || "'" + method.meta.originalPath + "'"}, {`)
+            jsCode.push(`  ${urlVar || "'" + originalPath + "'"}, {`)
             jsCode.push(`   method: '${lMethod.toUpperCase()}',`)
 
-            if (!method.meta.originalPath.includes('public')) {
+            if (!originalPath.includes('public')) {
                 jsCode.push(`   headers: {`)
                 jsCode.push(`    'Authorization': 'Bearer 598d9e1105'`)
                 if (data) {
@@ -330,7 +377,7 @@ const createXcodeSamples = (spec: OpenApiSpec) => {
             const firstResponse = Object.keys(method.responses)[0] || "";
             if (method.responses?.[firstResponse]?.content?.["application/json"]?.examples?.['example-1']?.value) {
                 jsCode.push(` .then(response => response.json())`)
-                switch (method.meta.element) {
+                switch (method.responses?.[firstResponse]?.content?.["application/json"]?.examples?.['example-1']?.value?.element) {
                     case 'shoji:catalog':
                         jsCode.push(` .then(jsonResponse => jsonResponse.index)`)
                         break
@@ -342,14 +389,27 @@ const createXcodeSamples = (spec: OpenApiSpec) => {
                         break
                 }
             }
-            samples.push({
+
+            // overwrite existing JAVASCRIPT array element if exists
+            found = false
+            const jsCodeSample = {
                 "lang": "JAVASCRIPT",
                 "source": replaceApos(jsCode.join('\n')),
                 "syntaxLang": "javascript"
-            })
+            }
+            for (let codeSample in method['x-code-samples']) {
+                if (method['x-code-samples'][codeSample].lang == "JAVASCRIPT") {
+                    found = true
+                    method['x-code-samples'][codeSample] = jsCodeSample
+                }
+            }
+            if (!found) {
+                method['x-code-samples'].push(jsCodeSample)
+            }
 
             // set x-code-samples
-            method['x-code-samples'] = samples
+            // if you do this you'll overwrite any R or python code samples by mistake
+            // method['x-code-samples'] = samples
 
         })
     })
@@ -668,6 +728,29 @@ const mergeResponseExample = (specMethod: OperationObject, statusString: string,
 
 }
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray
+const parseHarFileIntoIndividualFiles = (filename: string): void => {
+    const file = readFileSync(`input/${filename}`, 'utf8')
+    try {
+        const data: Har = JSON.parse(file)
+        if (!data.log) {
+            console.log('Invalid har file')
+            exit(1)
+        }
+
+        // decode base64 now before writing pretty har file
+        data.log.entries.forEach((item, index) => {
+            if (item.response.content.encoding === 'base64') {
+                data.log.entries[index].response.content.text = Buffer.from(item.response.content.text, 'base64').toString()
+                delete data.log.entries[index].response.content.encoding
+            }
+            writeFileSync(`output/individualHars/${filename.replace(/\//g, '-')}-${index}.json`, JSON.stringify(data.log.entries[index], null, 2))
+        })
+
+    } catch (err) {
+        console.log(`${filename} contains invalid json`)
+        exit(1)
+    }
+}
 const parseHarFile = (filename: string): object => {
     const file = readFileSync(filename, 'utf8')
     try {
@@ -703,7 +786,7 @@ const parseJsonFile = (filename: string): object => {
         exit(1)
     }
 }
-const replaceApos = (s:string): string => s; // rapidoc now supports single quote
+const replaceApos = (s: string): string => s; // rapidoc now supports single quote
 // const replaceApos = (s: string): string => s.replace(/'/g, "&apos;")
 const writeExamples = (spec: OpenApiSpec) => {
     const specExamples = {}
@@ -864,7 +947,7 @@ const validateExampleList = (exampleObject: Object, exampleObjectName: string, e
     for (let i = 0; i < publishExamplesArray.length; i++) {
         const exampleName = `example-${pad(i + 1, padWidth)}`
         if (!firstExample) firstExample = publishExamplesArray[i]
-        publishExamples[exampleName] = { value: publishExamplesArray[i]}
+        publishExamples[exampleName] = {value: publishExamplesArray[i]}
     }
 
     return {
@@ -944,7 +1027,11 @@ const generateSchema = async (exampleFilename: string) => {
                         "application/json": {}
                     }
                 }
-                methodObject.requestBody.content["application/json"].schema = toOpenApiSchema(jsonSchema)
+                methodObject.requestBody.content["application/json"].schema = await toOpenApiSchema(jsonSchema)
+                    .catch(err => {
+                        console.log('ERROR CONVERTING TO OPENAPI SCHEMA, USING JSON SCHEMA')
+                        methodObject.requestBody.content["application/json"].schema = jsonSchema
+                    })
                 methodObject.requestBody.content["application/json"].examples = exampleStats.publishExamples
             }
 
@@ -981,7 +1068,11 @@ const generateSchema = async (exampleFilename: string) => {
                             }
                         }
                     }
-                    methodObject.responses[statusCode].content["application/json"].schema = toOpenApiSchema(jsonSchema)
+                    methodObject.responses[statusCode].content["application/json"].schema = await toOpenApiSchema(jsonSchema)
+                        .catch(err => {
+                            console.log('ERROR CONVERTING TO OPENAPI SCHEMA, USING JSON SCHEMA')
+                            methodObject.responses[statusCode].content["application/json"].schema = jsonSchema
+                        })
                     methodObject.responses[statusCode].content["application/json"].examples = exampleStats.publishExamples
                 }
             }
@@ -989,6 +1080,155 @@ const generateSchema = async (exampleFilename: string) => {
     }
 
     return newSpec
+
+}
+const updateXcode = (filename: string) => {
+    console.log(filename)
+    // input file yaml to json object
+    const file: OpenApiSpec = YAML.safeLoad(readFileSync(filename))
+
+    // generate new samples
+    createXcodeSamples(file)
+
+    // write file back to orig yaml
+    writeFileSync(filename, YAML.safeDump(file))
+}
+
+const QAPaths = (spec: OpenApiSpec) => {
+    Object.keys(spec.paths).forEach(path => {
+        Object.keys(spec.paths[path]).forEach(lMethod => {
+            if (lMethod === 'parameters') return
+            const method = spec.paths[path][lMethod]
+
+            const examples = method.requestBody?.content?.["application/json"]?.examples
+            let firstExample
+            if (examples) {
+                const exampleList = Object.keys(examples)
+                for (let exampleName of exampleList) {
+                    const exampleData = method.requestBody?.content?.["application/json"]?.examples?.[exampleName]?.value
+                    if (!firstExample) firstExample = exampleData // to use later
+
+                    // log places where examples do not use shoji elements so we can correct them manually
+                    const elementType = exampleData.element
+                    if (!elementType) {
+                        console.log(path, lMethod, exampleName, 'NO SHOJI ELEMENT')
+                    }
+                }
+            }
+
+            // search json schema for element is string not ref and change them
+            const requestSchemaElement = method.requestBody?.content?.["application/json"]?.schema?.properties?.element
+            if (requestSchemaElement) {
+                if (!requestSchemaElement['$ref']) {
+                    console.log(requestSchemaElement)
+                    console.log('element', firstExample.element)
+                    switch (firstExample.element) {
+                        case "shoji:order":
+                            method.requestBody.content["application/json"].schema.properties.element = {'$ref': '#/components/schemas/Shoji-order-element'}
+                            break;
+                        case "shoji:entity":
+                            method.requestBody.content["application/json"].schema.properties.element = {'$ref': '#/components/schemas/Shoji-entity-element'}
+                            break;
+                        case "shoji:catalog":
+                            method.requestBody.content["application/json"].schema.properties.element = {'$ref': '#/components/schemas/Shoji-catalog-element'}
+                            break;
+                        case "shoji:view":
+                            method.requestBody.content["application/json"].schema.properties.element = {'$ref': '#/components/schemas/Shoji-view-element'}
+                            break;
+                    }
+                }
+            }
+
+            if (method.responses) {
+                for (let responseCode in method.responses) {
+
+                    // delete 404 where nothing matches URI
+                    if (responseCode == '404') {
+                        const responseExampleMessage = method.responses[responseCode].content?.['application/json']?.examples['example-1']?.value?.message
+                        if (responseExampleMessage == 'Nothing matches the given URI') {
+                            console.log(responseExampleMessage)
+                            delete method.responses[responseCode]
+                        }
+
+                    }
+
+                    // turn 202 responses into standard object
+                    if (responseCode == '202') {
+                        method.responses[responseCode] = {
+                            "content": {
+                                "application/json": {
+                                    "examples": {
+                                        "example-1": {
+                                            "value": {
+                                                "element": "shoji:view",
+                                                "self": "https://app.crunch.io/api/datasets/a5a3d3890a6e453d85662e9c66a9b7e9/decks/5f9720247f1145d6918d0a4463b17131/export/",
+                                                "value": "https://app.crunch.io/api/progress/3Aa5a3d3890a6e453d85662e9c66a9b7e9%24a3af7cb7765f3fee01c49225bf34415d/"
+                                            }
+                                        }
+                                    },
+                                    "schema": {
+                                        "$ref": '#/components/schemas/202-response'
+                                    }
+                                }
+                            },
+                            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
+                            "headers": {
+                                "Location": {
+                                    "description": "URL for resource requested, available when the asynchronous task has completed.",
+                                    "schema": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
+        })
+    })
+
+}
+
+const postProduction = () => {
+    const yamlFiles = []
+    recursive("/home/dcarr/git/crunch/zoom/server/src/cr/server/api", ["*.py*"], function (err, files) {
+        for (const filename of files) {
+            if (filename.includes("openapi") && !filename.includes("openapi.json")) {
+                console.log(`ANALYZING OPENAPI FILE ${filename}`)
+                const file: OpenApiSpec = YAML.safeLoad(readFileSync(filename))
+
+                // generate new samples
+                createXcodeSamples(file)
+                QAPaths(file)
+
+                // write file back to orig yaml
+                writeFileSync(filename, YAML.safeDump(file))
+            }
+        }
+    });
+}
+
+const listEndpoints = () => {
+    const file = readFileSync('/home/dcarr/git/crunch/zoom/server/src/cr/server/api/static/openapi.json', 'utf8')
+    const spec: OpenApiSpec = JSON.parse(file)
+    Object.keys(spec.paths).forEach(path => {
+        Object.keys(spec.paths[path]).forEach(lMethod => {
+            if (lMethod !== 'parameters') {
+                const method = spec.paths[path][lMethod]
+                const methodPath = `${lMethod.toUpperCase()} ${path}`
+                const url = `https://crunch.io/api/reference/#${lMethod}-${path.replace(/[{}]/g, '-')}`
+                console.log([
+                    methodPath,
+                    method.summary,
+                    url
+                ].join('\t'))
+            }
+        })
+    })
 
 }
 
@@ -1008,5 +1248,10 @@ export {
     generateSpec,
     generateSchema,
     mergeFiles,
+    updateXcode,
+    parseHarFileIntoIndividualFiles,
+    postProduction,
+    listEndpoints,
     Config
 }
+

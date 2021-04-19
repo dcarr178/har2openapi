@@ -1,9 +1,19 @@
 import {argv, exit} from 'process'
-import {Config, generateSamples, generateSpec, mergeFiles, generateSchema} from './lib'
+import {
+    Config,
+    generateSamples,
+    generateSpec,
+    mergeFiles,
+    generateSchema,
+    updateXcode,
+    parseHarFileIntoIndividualFiles, postProduction, listEndpoints
+} from './lib'
+import * as recursive from 'recursive-readdir'
 
 if (argv.length < 3) {
     console.log(`Usage: node ${argv[1]} examples inputHarFile1.json inputHarFile2.json inputHarFile3.json...`)
     console.log(`Usage: node ${argv[1]} schema`)
+    console.log(`Usage: node ${argv[1]} xcode`)
     console.log(`Usage: node ${argv[1]} merge masterFilename.json toMergeFilename.json outputFilename.json`)
 } else {
     switch (argv[2]) {
@@ -42,6 +52,25 @@ if (argv.length < 3) {
             })
             break;
 
+        case "xcode":
+            //xcode samples need to be generated at the end after the examples have been QAed and changed
+
+            // loop through all openapi files
+            recursive("/home/dcarr/git/crunch/zoom/server/src/cr/server/api", ["*.py*"], function (err, files) {
+                for (const file of files) {
+                    if (file.includes("openapi")) updateXcode(file)
+                }
+            });
+
+            break;
+        case 'post':
+            postProduction()
+            break;
+
+        case 'list':
+            listEndpoints()
+            break;
+
         case 'merge':
             if (argv.length < 6) {
                 console.log(`Usage: node ${argv[1]} ${argv[2]} masterFilename.json toMergeFilename.json outputFilename.json`)
@@ -53,7 +82,12 @@ if (argv.length < 3) {
             mergeFiles(masterFilename, toMergeFilename, mergeOutput)
             break;
 
+        case 'individual':
+            parseHarFileIntoIndividualFiles(argv[3])
+            break;
+
         default:
             console.log(`Command ${argv[2]} not recognized`)
     }
 }
+

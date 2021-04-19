@@ -1,0 +1,301 @@
+
+> har2openapi@1.0.0 post
+> node index.js post "[{]"
+
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/accounts.openapi.yaml
+/account/
+/account/
+/account/applications/
+/account/applications/
+/account/applications/{subdomain}/
+/account/applications/{subdomain}/
+/account/applications/{subdomain}/logo/
+/account/applications/{subdomain}/logo/
+/account/applications/{subdomain}/logo/
+/account/datasets/
+/account/logo/
+/account/logo/
+/account/projects/
+/account/teams/
+/account/templates/
+/account/templates/
+/account/templates/
+/account/users/
+/account/users/
+/account/users/
+/account/users/{user_id}/
+/accounts/{account_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/filters.openapi.yaml
+/datasets/0001a/exclusion/
+/datasets/0001a/exclusion/
+/datasets/0001a/filters/
+/datasets/0001a/filters/
+/datasets/0001a/filters/
+/datasets/0001a/filters/applied/
+/datasets/0001a/filters/applied/
+/datasets/0001a/filters/flat/
+/datasets/0001a/filters/flat/
+/datasets/0001a/filters/order/
+/datasets/0001a/filters/order/
+/datasets/0001a/filters/{filter_id}/
+/datasets/0001a/filters/{filter_id}/
+/datasets/0001a/filters/{filter_id}/
+/datasets/0001a/filters/{filter_id}/applied/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/geodata.openapi.yaml
+/geodata/
+/geodata/
+/geodata/{geodata_id}/
+/geodata/{geodata_id}/
+/geodata/{geodata_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/progress.openapi.yaml
+/progress/{task_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/public.openapi.yaml
+/public/
+/public/config/
+/public/crunchbox/preview/
+/public/crunchbox/share/
+/public/login/
+/public/login/
+/public/openapi/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/root.openapi.yaml
+/
+/feature_flag/
+/feature_flag/{flag_id}
+/logout/
+/otp/authorize
+/otp/login
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/search.openapi.yaml
+/search/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/sources.openapi.yaml
+/sources/
+/sources/
+/sources/{source_id}/
+/sources/{source_id}/
+/sources/{source_id}/
+/sources/{source_id}/file/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/teams.openapi.yaml
+/datasets/0001a/teams/
+/teams/
+/teams/
+/teams/{team_id}/
+/teams/{team_id}/
+/teams/{team_id}/
+/teams/{team_id}/datasets/
+/teams/{team_id}/members/
+/teams/{team_id}/members/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/dashboards/dashboards.openapi.yaml
+/dashboards/
+/dashboards/
+/dashboards/{dashboard_id}/
+/dashboards/{dashboard_id}/teams/
+/dashboards/{dashboard_id}/users/
+/dashboards/{dashboard_id}/users/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/actions.openapi.yaml
+/datasets/0001a/actions/
+/datasets/0001a/actions/
+/datasets/0001a/actions/current/
+/datasets/0001a/actions/since_forking/
+/datasets/0001a/actions/upstream_delta/
+/datasets/0001a/actions/{action_hash}
+/datasets/0001a/actions/{action_hash}/since
+/datasets/0001a/actions/{action_hash}/tags
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/analyze.openapi.yaml
+/datasets/0001a/cube/
+/datasets/0001a/cube/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/batches.openapi.yaml
+/datasets/0001a/batches/
+/datasets/0001a/batches/
+/datasets/0001a/batches/compare/
+/datasets/0001a/batches/{batch_id}/
+/datasets/0001a/batches/{batch_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/boxdata.openapi.yaml
+/datasets/0001a/boxdata/
+/datasets/0001a/boxdata/
+/datasets/0001a/boxdata/{boxdata_id}/
+/datasets/0001a/boxdata/{boxdata_id}/
+/datasets/0001a/boxdata/{boxdata_id}/
+/datasets/0001a/boxdata/{boxdata_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/datasets.openapi.yaml
+/datasets/
+/datasets/
+/datasets/
+/datasets/align/
+/datasets/by_name/{datasetName}/
+/datasets/match/
+/datasets/match/{analysis_id}/
+/datasets/0001a/
+/datasets/0001a/
+/datasets/0001a/
+/datasets/0001a/forks/
+/datasets/0001a/forks/
+/datasets/0001a/permissions/
+/datasets/0001a/permissions/
+/datasets/0001a/pk/
+/datasets/0001a/pk/
+/datasets/0001a/pk/
+/datasets/0001a/preferences/
+/datasets/0001a/preferences/
+/datasets/0001a/publish/
+/datasets/0001a/publish/
+/datasets/0001a/views/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/entity.openapi.yaml
+/datasets/0001a/settings/
+/datasets/0001a/settings/
+/datasets/0001a/state/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/export.openapi.yaml
+/datasets/0001a/export/
+/datasets/0001a/export/{format}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/multitables.openapi.yaml
+/datasets/0001a/multitables/
+/datasets/0001a/multitables/
+/datasets/0001a/multitables/{multitable_id}/
+/datasets/0001a/multitables/{multitable_id}/
+/datasets/0001a/multitables/{multitable_id}/
+/datasets/0001a/multitables/{multitable_id}/applied/
+/datasets/0001a/multitables/{multitable_id}/tabbook/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/schema.openapi.yaml
+/datasets/0001a/schema/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/scripts.openapi.yaml
+/datasets/0001a/scripts/
+/datasets/0001a/scripts/
+/datasets/0001a/scripts/output/
+/datasets/0001a/scripts/revert/
+/datasets/0001a/scripts/{script_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/second_order_analysis.openapi.yaml
+/datasets/0001a/second_order_analysis/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/streams.openapi.yaml
+/datasets/0001a/stream/
+/datasets/0001a/stream/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/summary.openapi.yaml
+/datasets/0001a/summary/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/table.openapi.yaml
+/datasets/0001a/table/
+/datasets/0001a/table/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/datasets/version.openapi.yaml
+/datasets/0001a/savepoints/
+/datasets/0001a/savepoints/
+/datasets/0001a/savepoints/{savepoint_id}/
+/datasets/0001a/savepoints/{savepoint_id}/
+/datasets/0001a/savepoints/{savepoint_id}/revert/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/integrations/integrations.openapi.yaml
+/integrations/
+/integrations/{integration_partner}/
+/integrations/{integration_partner}/add_dataset/
+/integrations/{integration_partner}/update_dataset/
+/users/{user_id}/integrations
+/users/{user_id}/integrations/{integration_id}/surveys
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/projects/projects.openapi.yaml
+/projects/
+/projects/
+/projects/
+/projects/personal/
+/projects/personal/
+/projects/personal/
+/projects/shared/
+/projects/{project_id}/
+/projects/{project_id}/
+/projects/{project_id}/
+/projects/{project_id}/
+/projects/{project_id}/datasets/
+/projects/{project_id}/icon/
+/projects/{project_id}/icon/
+/projects/{project_id}/icon/
+/projects/{project_id}/logo/
+/projects/{project_id}/logo/
+/projects/{project_id}/logo/
+/projects/{project_id}/members/
+/projects/{project_id}/members/
+/projects/{project_id}/teams/
+/projects/{project_id}/teams/
+/projects/{project_id}/teams/{team_id}
+/projects/{project_id}/templates/
+/projects/{project_id}/templates/
+/projects/{project_id}/templates/
+/projects/{project_id}/users/
+/projects/{project_id}/users/
+/projects/{project_id}/users/{user_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/variables/folders.openapi.yaml
+/datasets/0001a/folders/
+/datasets/0001a/folders/
+/datasets/0001a/folders/
+/datasets/0001a/folders/hidden/
+/datasets/0001a/folders/hidden/
+/datasets/0001a/folders/hidden/
+/datasets/0001a/folders/parents/
+/datasets/0001a/folders/secure/
+/datasets/0001a/folders/secure/
+/datasets/0001a/folders/secure/
+/datasets/0001a/folders/trash/
+/datasets/0001a/folders/trash/
+/datasets/0001a/folders/trash/
+/datasets/0001a/folders/{folder_id}/
+/datasets/0001a/folders/{folder_id}/
+/datasets/0001a/folders/{folder_id}/
+/datasets/0001a/folders/{folder_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/variables/tags.openapi.yaml
+/datasets/0001a/tags/
+/datasets/0001a/tags/
+/datasets/0001a/tags/{tag_name}
+/datasets/0001a/tags/{tag_name}
+/datasets/0001a/tags/{tag_name}
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/variables/variables.openapi.yaml
+/datasets/0001a/variables/
+/datasets/0001a/variables/
+/datasets/0001a/variables/
+/datasets/0001a/variables/hier/
+/datasets/0001a/variables/personal/
+/datasets/0001a/variables/personal/variables/
+/datasets/0001a/variables/private/
+/datasets/0001a/variables/private/
+/datasets/0001a/variables/weights/
+/datasets/0001a/variables/weights/
+/datasets/0001a/variables/{variable_id}/
+/datasets/0001a/variables/{variable_id}/
+/datasets/0001a/variables/{variable_id}/
+/datasets/0001a/variables/{variable_id}/
+/datasets/0001a/variables/{variable_id}/cast/
+/datasets/0001a/variables/{variable_id}/cast/
+/datasets/0001a/variables/{variable_id}/frequencies/
+/datasets/0001a/variables/{variable_id}/missing_rules/
+/datasets/0001a/variables/{variable_id}/missing_rules/
+/datasets/0001a/variables/{variable_id}/subvariables/
+/datasets/0001a/variables/{variable_id}/subvariables/
+/datasets/0001a/variables/{variable_id}/subvariables/{subvariable_id}/
+/datasets/0001a/variables/{variable_id}/subvariables/{subvariable_id}/
+/datasets/0001a/variables/{variable_id}/summary/
+/datasets/0001a/variables/{variable_id}/user_settings/
+/datasets/0001a/variables/{variable_id}/user_settings/
+/datasets/0001a/variables/{variable_id}/user_settings/
+/datasets/0001a/variables/{variable_id}/values/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/users/decks.openapi.yaml
+/datasets/0001a/decks/
+/datasets/0001a/decks/
+/datasets/0001a/decks/
+/datasets/0001a/decks/order/
+/datasets/0001a/decks/order/
+/datasets/0001a/decks/{deck_id}/
+/datasets/0001a/decks/{deck_id}/
+/datasets/0001a/decks/{deck_id}/
+/datasets/0001a/decks/{deck_id}/export/
+/datasets/0001a/decks/{deck_id}/slides/
+/datasets/0001a/decks/{deck_id}/slides/
+/datasets/0001a/decks/{deck_id}/slides/flat/
+/datasets/0001a/decks/{deck_id}/slides/flat/
+/datasets/0001a/decks/{deck_id}/slides/{slide_id}/
+/datasets/0001a/decks/{deck_id}/slides/{slide_id}/
+/datasets/0001a/decks/{deck_id}/slides/{slide_id}/
+/datasets/0001a/decks/{deck_id}/slides/{slide_id}/analyses/
+/datasets/0001a/decks/{deck_id}/slides/{slide_id}/analyses/{analysis_id}/
+/datasets/0001a/decks/{deck_id}/slides/{slide_id}/analyses/{analysis_id}/
+Updating /home/dcarr/git/crunch/zoom/server/src/cr/server/api/controllers/users/users.openapi.yaml
+/datasets/0001a/users/
+/datasets/0001a/users/
+/users/
+/users/{user_id}/
+/users/{user_id}/
+/users/{user_id}/change_email/
+/users/{user_id}/datasets/
+/users/{user_id}/invite/
+/users/{user_id}/password/
+/users/{user_id}/password_reset/
+/users/{user_id}/reassign/

@@ -1,0 +1,265 @@
+GET /geodata/	List available geodata	https://crunch.io/api/reference/#get-/geodata/
+POST /geodata/	Create public geodata	https://crunch.io/api/reference/#post-/geodata/
+DELETE /geodata/{geodata_id}/	Delete geodata entry	https://crunch.io/api/reference/#delete-/geodata/-geodata_id-/
+GET /geodata/{geodata_id}/	List geodata details	https://crunch.io/api/reference/#get-/geodata/-geodata_id-/
+PATCH /geodata/{geodata_id}/	Update geodata details	https://crunch.io/api/reference/#patch-/geodata/-geodata_id-/
+GET /search/	Cross-dataset search	https://crunch.io/api/reference/#get-/search/
+GET /public/	Unauthenticated urls	https://crunch.io/api/reference/#get-/public/
+GET /public/config/	Subdomain configuration	https://crunch.io/api/reference/#get-/public/config/
+POST /public/crunchbox/preview/	Generate Crunchbox preview	https://crunch.io/api/reference/#post-/public/crunchbox/preview/
+GET /public/crunchbox/share/	Share Crunchbox html	https://crunch.io/api/reference/#get-/public/crunchbox/share/
+GET /public/login/	Authentication method	https://crunch.io/api/reference/#get-/public/login/
+POST /public/login/	Log in	https://crunch.io/api/reference/#post-/public/login/
+GET /public/openapi/	Crunch API documentation	https://crunch.io/api/reference/#get-/public/openapi/
+GET /datasets/{dataset_id}/exclusion/	View the current row exclusion filter	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/exclusion/
+PATCH /datasets/{dataset_id}/exclusion/	Update row exclusions	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/exclusion/
+GET /datasets/{dataset_id}/filters/	List filters	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/filters/
+PATCH /datasets/{dataset_id}/filters/	Batch rename filters	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/filters/
+POST /datasets/{dataset_id}/filters/	Create filter	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/filters/
+GET /datasets/{dataset_id}/filters/applied/	List user-applied filters	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/filters/applied/
+PUT /datasets/{dataset_id}/filters/applied/	Update user-applied filters	https://crunch.io/api/reference/#put-/datasets/-dataset_id-/filters/applied/
+GET /datasets/{dataset_id}/filters/flat/	List filter order (flat)	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/filters/flat/
+PUT /datasets/{dataset_id}/filters/flat/	Update filters display order	https://crunch.io/api/reference/#put-/datasets/-dataset_id-/filters/flat/
+GET /datasets/{dataset_id}/filters/order/	Filters display order	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/filters/order/
+PATCH /datasets/{dataset_id}/filters/order/	Update filter order	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/filters/order/
+DELETE /datasets/{dataset_id}/filters/{filter_id}/	Delete filter	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/filters/-filter_id-/
+GET /datasets/{dataset_id}/filters/{filter_id}/	Filter details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/filters/-filter_id-/
+PATCH /datasets/{dataset_id}/filters/{filter_id}/	Update filter	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/filters/-filter_id-/
+GET /datasets/{dataset_id}/filters/{filter_id}/applied/	View applied filter details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/filters/-filter_id-/applied/
+GET /progress/{task_id}/	Task progress	https://crunch.io/api/reference/#get-/progress/-task_id-/
+GET /sources/	List data sources	https://crunch.io/api/reference/#get-/sources/
+POST /sources/	Upload data to Crunch	https://crunch.io/api/reference/#post-/sources/
+DELETE /sources/{source_id}/	Delete data source	https://crunch.io/api/reference/#delete-/sources/-source_id-/
+GET /sources/{source_id}/	Data source details	https://crunch.io/api/reference/#get-/sources/-source_id-/
+PUT /sources/{source_id}/	Update data source details	https://crunch.io/api/reference/#put-/sources/-source_id-/
+GET /sources/{source_id}/file/	Download data source file	https://crunch.io/api/reference/#get-/sources/-source_id-/file/
+GET /datasets/{dataset_id}/teams/	List dataset teams	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/teams/
+GET /teams/	List user teams	https://crunch.io/api/reference/#get-/teams/
+POST /teams/	Create team	https://crunch.io/api/reference/#post-/teams/
+DELETE /teams/{team_id}/	Delete team	https://crunch.io/api/reference/#delete-/teams/-team_id-/
+GET /teams/{team_id}/	Team details	https://crunch.io/api/reference/#get-/teams/-team_id-/
+PATCH /teams/{team_id}/	Update team name	https://crunch.io/api/reference/#patch-/teams/-team_id-/
+GET /teams/{team_id}/datasets/	List team datasets	https://crunch.io/api/reference/#get-/teams/-team_id-/datasets/
+GET /teams/{team_id}/members/	List team members	https://crunch.io/api/reference/#get-/teams/-team_id-/members/
+PATCH /teams/{team_id}/members/	Add/remove team members	https://crunch.io/api/reference/#patch-/teams/-team_id-/members/
+GET /account/	My account details	https://crunch.io/api/reference/#get-/account/
+PATCH /account/	Update account color palette	https://crunch.io/api/reference/#patch-/account/
+GET /account/applications/	List subdomains	https://crunch.io/api/reference/#get-/account/applications/
+PATCH /account/applications/	Create subdomain	https://crunch.io/api/reference/#patch-/account/applications/
+GET /account/applications/{subdomain}/	Subdomain details	https://crunch.io/api/reference/#get-/account/applications/-subdomain-/
+PATCH /account/applications/{subdomain}/	Update subdomain details	https://crunch.io/api/reference/#patch-/account/applications/-subdomain-/
+GET /account/applications/{subdomain}/logo/	List subdomain logos	https://crunch.io/api/reference/#get-/account/applications/-subdomain-/logo/
+PATCH /account/applications/{subdomain}/logo/	Remove subdomain logos	https://crunch.io/api/reference/#patch-/account/applications/-subdomain-/logo/
+POST /account/applications/{subdomain}/logo/	Update subdomain logos	https://crunch.io/api/reference/#post-/account/applications/-subdomain-/logo/
+GET /account/datasets/	List account datasets	https://crunch.io/api/reference/#get-/account/datasets/
+PATCH /account/logo/	Remove account logos	https://crunch.io/api/reference/#patch-/account/logo/
+POST /account/logo/	Update account logos	https://crunch.io/api/reference/#post-/account/logo/
+GET /account/projects/	List projects	https://crunch.io/api/reference/#get-/account/projects/
+GET /account/teams/	List account teams	https://crunch.io/api/reference/#get-/account/teams/
+GET /account/templates/	List Powerpoint template	https://crunch.io/api/reference/#get-/account/templates/
+PATCH /account/templates/	Remove Powerpoint template	https://crunch.io/api/reference/#patch-/account/templates/
+POST /account/templates/	Update Powerpoint template	https://crunch.io/api/reference/#post-/account/templates/
+GET /account/users/	List account users	https://crunch.io/api/reference/#get-/account/users/
+PATCH /account/users/	Update account user	https://crunch.io/api/reference/#patch-/account/users/
+POST /account/users/	Create account user	https://crunch.io/api/reference/#post-/account/users/
+GET /account/users/{user_id}/	Account user details	https://crunch.io/api/reference/#get-/account/users/-user_id-/
+GET /accounts/{account_id}/	Account details	https://crunch.io/api/reference/#get-/accounts/-account_id-/
+GET /	Root urls	https://crunch.io/api/reference/#get-/
+GET /feature_flag/	List feature flags	https://crunch.io/api/reference/#get-/feature_flag/
+GET /feature_flag/{flag_id}	Feature flag status	https://crunch.io/api/reference/#get-/feature_flag/-flag_id-
+GET /logout/	Log out	https://crunch.io/api/reference/#get-/logout/
+POST /otp/authorize	Create one-time password	https://crunch.io/api/reference/#post-/otp/authorize
+GET /otp/login	Use one-time password	https://crunch.io/api/reference/#get-/otp/login
+GET /datasets/{dataset_id}/actions/	List dataset actions	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/
+POST /datasets/{dataset_id}/actions/	Replay actions from fork	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/actions/
+GET /datasets/{dataset_id}/actions/current/	Most recent action	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/current/
+GET /datasets/{dataset_id}/actions/since_forking/	Actions performed on FORKED dataset after fork	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/since_forking/
+GET /datasets/{dataset_id}/actions/upstream_delta/	Actions performed on PARENT dataset after fork	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/upstream_delta/
+GET /datasets/{dataset_id}/actions/{action_hash}	Action details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/-action_hash-
+GET /datasets/{dataset_id}/actions/{action_hash}/since	Actions performed after action X	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/-action_hash-/since
+GET /datasets/{dataset_id}/actions/{action_hash}/tags	List tags	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/actions/-action_hash-/tags
+GET /datasets/{dataset_id}/summary/	Row and column count	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/summary/
+GET /datasets/{dataset_id}/table/	List variable definitions	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/table/
+POST /datasets/{dataset_id}/table/	Modify variables via ZCL	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/table/
+GET /datasets/{dataset_id}/second_order_analysis/	Calculate second order analyses	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/second_order_analysis/
+GET /datasets/{dataset_id}/savepoints/	List savepoints	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/savepoints/
+POST /datasets/{dataset_id}/savepoints/	Create savepoint	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/savepoints/
+GET /datasets/{dataset_id}/savepoints/{savepoint_id}/	Savepoint details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/savepoints/-savepoint_id-/
+PATCH /datasets/{dataset_id}/savepoints/{savepoint_id}/	Update savepoint description	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/savepoints/-savepoint_id-/
+POST /datasets/{dataset_id}/savepoints/{savepoint_id}/revert/	Revert dataset to savepoint	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/savepoints/-savepoint_id-/revert/
+GET /datasets/{dataset_id}/boxdata/	List Crunchboxes	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/boxdata/
+POST /datasets/{dataset_id}/boxdata/	Create Crunchbox	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/boxdata/
+DELETE /datasets/{dataset_id}/boxdata/{boxdata_id}/	Delete Crunchbox	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/boxdata/-boxdata_id-/
+GET /datasets/{dataset_id}/boxdata/{boxdata_id}/	Crunchbox details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/boxdata/-boxdata_id-/
+PATCH /datasets/{dataset_id}/boxdata/{boxdata_id}/	Selectively update Crunchbox	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/boxdata/-boxdata_id-/
+PUT /datasets/{dataset_id}/boxdata/{boxdata_id}/	Overwrite Crunchbox	https://crunch.io/api/reference/#put-/datasets/-dataset_id-/boxdata/-boxdata_id-/
+GET /datasets/{dataset_id}/stream/	Streaming status	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/stream/
+POST /datasets/{dataset_id}/stream/	Insert streamed data	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/stream/
+GET /datasets/{dataset_id}/multitables/	List multitables	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/multitables/
+POST /datasets/{dataset_id}/multitables/	Create multitable	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/multitables/
+DELETE /datasets/{dataset_id}/multitables/{multitable_id}/	Delete multitable	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/multitables/-multitable_id-/
+GET /datasets/{dataset_id}/multitables/{multitable_id}/	Multitable details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/multitables/-multitable_id-/
+PATCH /datasets/{dataset_id}/multitables/{multitable_id}/	Update multitable	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/multitables/-multitable_id-/
+GET /datasets/{dataset_id}/multitables/{multitable_id}/applied/	View applied multitable details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/multitables/-multitable_id-/applied/
+POST /datasets/{dataset_id}/multitables/{multitable_id}/tabbook/	Export multitable	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/multitables/-multitable_id-/tabbook/
+GET /datasets/{dataset_id}/batches/	List dataset batches	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/batches/
+POST /datasets/{dataset_id}/batches/	Add data to a dataset	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/batches/
+GET /datasets/{dataset_id}/batches/compare/	Test append before executing	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/batches/compare/
+DELETE /datasets/{dataset_id}/batches/{batch_id}/	Delete batch	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/batches/-batch_id-/
+GET /datasets/{dataset_id}/batches/{batch_id}/	Batch details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/batches/-batch_id-/
+GET /datasets/	List datasets	https://crunch.io/api/reference/#get-/datasets/
+PATCH /datasets/	Update datasets	https://crunch.io/api/reference/#patch-/datasets/
+POST /datasets/	Create dataset	https://crunch.io/api/reference/#post-/datasets/
+POST /datasets/align/	Preview alignment conflicts before append	https://crunch.io/api/reference/#post-/datasets/align/
+GET /datasets/by_name/{datasetName}/	Filter datasets by name	https://crunch.io/api/reference/#get-/datasets/by_name/-datasetName-/
+POST /datasets/match/	Request matching variable analysis	https://crunch.io/api/reference/#post-/datasets/match/
+GET /datasets/match/{analysis_id}/	View matching variable analysis	https://crunch.io/api/reference/#get-/datasets/match/-analysis_id-/
+DELETE /datasets/{dataset_id}/	Delete dataset	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/
+GET /datasets/{dataset_id}/	Dataset details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/
+PATCH /datasets/{dataset_id}/	Update dataset	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/
+GET /datasets/{dataset_id}/forks/	List forks	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/forks/
+POST /datasets/{dataset_id}/forks/	Fork dataset	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/forks/
+GET /datasets/{dataset_id}/permissions/	List user access	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/permissions/
+PATCH /datasets/{dataset_id}/permissions/	Add/change/revoke user access	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/permissions/
+DELETE /datasets/{dataset_id}/pk/	Unset primary key	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/pk/
+GET /datasets/{dataset_id}/pk/	List primary key	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/pk/
+POST /datasets/{dataset_id}/pk/	Set primary key	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/pk/
+GET /datasets/{dataset_id}/preferences/	List user preferences	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/preferences/
+PATCH /datasets/{dataset_id}/preferences/	Set user preferences	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/preferences/
+GET /datasets/{dataset_id}/publish/	Is dataset published	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/publish/
+POST /datasets/{dataset_id}/publish/	Publish/unpublish dataset	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/publish/
+GET /datasets/{dataset_id}/views/	List dataset views	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/views/
+GET /datasets/{dataset_id}/export/	List available export formats	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/export/
+POST /datasets/{dataset_id}/export/{format}/	Export dataset	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/export/-format-/
+GET /datasets/{dataset_id}/schema/	View dataset schema	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/schema/
+GET /datasets/{dataset_id}/scripts/	List scripts	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/scripts/
+POST /datasets/{dataset_id}/scripts/	Create script	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/scripts/
+DELETE /datasets/{dataset_id}/scripts/output/	Undo	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/scripts/output/
+POST /datasets/{dataset_id}/scripts/revert/	Restore	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/scripts/revert/
+GET /datasets/{dataset_id}/scripts/{script_id}/	Script details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/scripts/-script_id-/
+GET /datasets/{dataset_id}/cube/	Calculate data cube (via url query)	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/cube/
+POST /datasets/{dataset_id}/cube/	Calculate data cube	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/cube/
+GET /datasets/{dataset_id}/settings/	List settings	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/settings/
+PATCH /datasets/{dataset_id}/settings/	Update settings	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/settings/
+GET /datasets/{dataset_id}/state/	List dataset's current state	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/state/
+GET /datasets/{dataset_id}/users/	List dataset users	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/users/
+PATCH /datasets/{dataset_id}/users/	Add/remove dataset users	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/users/
+GET /users/	List users	https://crunch.io/api/reference/#get-/users/
+GET /users/{user_id}/	User details	https://crunch.io/api/reference/#get-/users/-user_id-/
+PATCH /users/{user_id}/	Update user record	https://crunch.io/api/reference/#patch-/users/-user_id-/
+POST /users/{user_id}/change_email/	Update user email address	https://crunch.io/api/reference/#post-/users/-user_id-/change_email/
+GET /users/{user_id}/datasets/	List user datasets	https://crunch.io/api/reference/#get-/users/-user_id-/datasets/
+POST /users/{user_id}/invite/	Send invitation email	https://crunch.io/api/reference/#post-/users/-user_id-/invite/
+POST /users/{user_id}/password/	Update password	https://crunch.io/api/reference/#post-/users/-user_id-/password/
+POST /users/{user_id}/password_reset/	Reset password	https://crunch.io/api/reference/#post-/users/-user_id-/password_reset/
+POST /users/{user_id}/reassign/	Reassign a user	https://crunch.io/api/reference/#post-/users/-user_id-/reassign/
+GET /datasets/{dataset_id}/decks/	List decks	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/
+PATCH /datasets/{dataset_id}/decks/	Bulk-edit multiple decks	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/decks/
+POST /datasets/{dataset_id}/decks/	Create deck	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/decks/
+GET /datasets/{dataset_id}/decks/order/	List deck order	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/order/
+PATCH /datasets/{dataset_id}/decks/order/	Update deck order	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/decks/order/
+DELETE /datasets/{dataset_id}/decks/{deck_id}/	Delete deck	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/decks/-deck_id-/
+GET /datasets/{dataset_id}/decks/{deck_id}/	Deck details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/-deck_id-/
+PATCH /datasets/{dataset_id}/decks/{deck_id}/	Edit deck	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/decks/-deck_id-/
+POST /datasets/{dataset_id}/decks/{deck_id}/export/	Export deck	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/decks/-deck_id-/export/
+GET /datasets/{dataset_id}/decks/{deck_id}/slides/	List slides	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/-deck_id-/slides/
+POST /datasets/{dataset_id}/decks/{deck_id}/slides/	Create slide	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/decks/-deck_id-/slides/
+GET /datasets/{dataset_id}/decks/{deck_id}/slides/flat/	List slide order	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/-deck_id-/slides/flat/
+PATCH /datasets/{dataset_id}/decks/{deck_id}/slides/flat/	Update slide order	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/decks/-deck_id-/slides/flat/
+DELETE /datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/	Delete slide	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/decks/-deck_id-/slides/-slide_id-/
+GET /datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/	Slide details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/-deck_id-/slides/-slide_id-/
+PATCH /datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/	Update slide	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/decks/-deck_id-/slides/-slide_id-/
+GET /datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/analyses/	List analyses	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/-deck_id-/slides/-slide_id-/analyses/
+GET /datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/analyses/{analysis_id}/	Analysis details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/decks/-deck_id-/slides/-slide_id-/analyses/-analysis_id-/
+PATCH /datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/analyses/{analysis_id}/	Update analysis	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/decks/-deck_id-/slides/-slide_id-/analyses/-analysis_id-/
+GET /datasets/{dataset_id}/tags/	List variable tags	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/tags/
+POST /datasets/{dataset_id}/tags/	Create variable tag	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/tags/
+DELETE /datasets/{dataset_id}/tags/{tag_name}	Delete variable tag	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/tags/-tag_name-
+GET /datasets/{dataset_id}/tags/{tag_name}	List variables attached to tag	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/tags/-tag_name-
+PATCH /datasets/{dataset_id}/tags/{tag_name}	Edit variable tag	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/tags/-tag_name-
+GET /datasets/{dataset_id}/folders/	List contents of root folder	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/
+PATCH /datasets/{dataset_id}/folders/	Move elements to root folder	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/folders/
+POST /datasets/{dataset_id}/folders/	Create sub-folder under root folder	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/folders/
+GET /datasets/{dataset_id}/folders/hidden/	List hidden elements	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/hidden/
+PATCH /datasets/{dataset_id}/folders/hidden/	Hide elements	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/folders/hidden/
+POST /datasets/{dataset_id}/folders/hidden/	Create hidden sub-folder	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/folders/hidden/
+GET /datasets/{dataset_id}/folders/parents/	Folder parents	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/parents/
+GET /datasets/{dataset_id}/folders/secure/	List private variables	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/secure/
+PATCH /datasets/{dataset_id}/folders/secure/	Move elements to private folder	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/folders/secure/
+POST /datasets/{dataset_id}/folders/secure/	Create private sub-folder	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/folders/secure/
+DELETE /datasets/{dataset_id}/folders/trash/	Empty the trash folder	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/folders/trash/
+GET /datasets/{dataset_id}/folders/trash/	List contents of the trash folder	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/trash/
+PATCH /datasets/{dataset_id}/folders/trash/	Move elements to the trash	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/folders/trash/
+DELETE /datasets/{dataset_id}/folders/{folder_id}/	Delete sub-folder	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/folders/-folder_id-/
+GET /datasets/{dataset_id}/folders/{folder_id}/	List sub-folder contents	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/-folder_id-/
+PATCH /datasets/{dataset_id}/folders/{folder_id}/	Move elements into sub-folder	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/folders/-folder_id-/
+POST /datasets/{dataset_id}/folders/{folder_id}/	Create sub-folder	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/folders/-folder_id-/
+GET /datasets/{dataset_id}/variables/	List dataset variables	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/
+PATCH /datasets/{dataset_id}/variables/	Update dataset variables	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/variables/
+POST /datasets/{dataset_id}/variables/	Create dataset variable	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/variables/
+GET /datasets/{dataset_id}/variables/hier/	List hierarchical order	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/hier/
+GET /datasets/{dataset_id}/variables/personal/	List favorites order	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/personal/
+GET /datasets/{dataset_id}/variables/personal/variables/	List favorites	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/personal/variables/
+GET /datasets/{dataset_id}/variables/private/	List personal variables	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/private/
+PATCH /datasets/{dataset_id}/variables/private/	Update personal variables	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/variables/private/
+GET /datasets/{dataset_id}/variables/weights/	List weight variables	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/weights/
+PATCH /datasets/{dataset_id}/variables/weights/	Update weight variables	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/variables/weights/
+DELETE /datasets/{dataset_id}/variables/{variable_id}/	Delete variable	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/variables/-variable_id-/
+GET /datasets/{dataset_id}/variables/{variable_id}/	Variable details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/
+PATCH /datasets/{dataset_id}/variables/{variable_id}/	Update variable	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/variables/-variable_id-/
+POST /datasets/{dataset_id}/variables/{variable_id}/	Unbind array sub-variables	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/variables/-variable_id-/
+GET /datasets/{dataset_id}/variables/{variable_id}/cast/	Update variable data type (preview)	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/cast/
+POST /datasets/{dataset_id}/variables/{variable_id}/cast/	Update variable data type	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/variables/-variable_id-/cast/
+GET /datasets/{dataset_id}/variables/{variable_id}/frequencies/	Univariate frequencies	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/frequencies/
+GET /datasets/{dataset_id}/variables/{variable_id}/missing_rules/	List missing value rules	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/missing_rules/
+POST /datasets/{dataset_id}/variables/{variable_id}/missing_rules/	Add a missing value rule	https://crunch.io/api/reference/#post-/datasets/-dataset_id-/variables/-variable_id-/missing_rules/
+GET /datasets/{dataset_id}/variables/{variable_id}/subvariables/	List subvariables	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/subvariables/
+PATCH /datasets/{dataset_id}/variables/{variable_id}/subvariables/	Update subvariables	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/variables/-variable_id-/subvariables/
+DELETE /datasets/{dataset_id}/variables/{variable_id}/subvariables/{subvariable_id}/	Delete subvariable	https://crunch.io/api/reference/#delete-/datasets/-dataset_id-/variables/-variable_id-/subvariables/-subvariable_id-/
+GET /datasets/{dataset_id}/variables/{variable_id}/subvariables/{subvariable_id}/	Subvariable details	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/subvariables/-subvariable_id-/
+GET /datasets/{dataset_id}/variables/{variable_id}/summary/	Summarize variable	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/summary/
+GET /datasets/{dataset_id}/variables/{variable_id}/user_settings/	List variable user settings	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/user_settings/
+PATCH /datasets/{dataset_id}/variables/{variable_id}/user_settings/	Update variable user settings	https://crunch.io/api/reference/#patch-/datasets/-dataset_id-/variables/-variable_id-/user_settings/
+PUT /datasets/{dataset_id}/variables/{variable_id}/user_settings/	Replace variable user settings	https://crunch.io/api/reference/#put-/datasets/-dataset_id-/variables/-variable_id-/user_settings/
+GET /datasets/{dataset_id}/variables/{variable_id}/values/	List variable values	https://crunch.io/api/reference/#get-/datasets/-dataset_id-/variables/-variable_id-/values/
+GET /projects/	List available projects	https://crunch.io/api/reference/#get-/projects/
+PATCH /projects/	Update project names	https://crunch.io/api/reference/#patch-/projects/
+POST /projects/	Create project	https://crunch.io/api/reference/#post-/projects/
+GET /projects/personal/	List personal projects	https://crunch.io/api/reference/#get-/projects/personal/
+PATCH /projects/personal/	Move projects to the personal project	https://crunch.io/api/reference/#patch-/projects/personal/
+POST /projects/personal/	Create personal project	https://crunch.io/api/reference/#post-/projects/personal/
+GET /projects/shared/	Datasets shared with me	https://crunch.io/api/reference/#get-/projects/shared/
+DELETE /projects/{project_id}/	Delete project	https://crunch.io/api/reference/#delete-/projects/-project_id-/
+GET /projects/{project_id}/	List project details	https://crunch.io/api/reference/#get-/projects/-project_id-/
+PATCH /projects/{project_id}/	Update project attributes	https://crunch.io/api/reference/#patch-/projects/-project_id-/
+POST /projects/{project_id}/	Create nested sub-project	https://crunch.io/api/reference/#post-/projects/-project_id-/
+GET /projects/{project_id}/datasets/	List datasets in project	https://crunch.io/api/reference/#get-/projects/-project_id-/datasets/
+GET /projects/{project_id}/icon/	List project icon	https://crunch.io/api/reference/#get-/projects/-project_id-/icon/
+PATCH /projects/{project_id}/icon/	Remove project icon	https://crunch.io/api/reference/#patch-/projects/-project_id-/icon/
+POST /projects/{project_id}/icon/	Update project icon	https://crunch.io/api/reference/#post-/projects/-project_id-/icon/
+GET /projects/{project_id}/logo/	List project logos	https://crunch.io/api/reference/#get-/projects/-project_id-/logo/
+PATCH /projects/{project_id}/logo/	Remove project logo	https://crunch.io/api/reference/#patch-/projects/-project_id-/logo/
+POST /projects/{project_id}/logo/	Update project logo	https://crunch.io/api/reference/#post-/projects/-project_id-/logo/
+GET /projects/{project_id}/members/	List project members	https://crunch.io/api/reference/#get-/projects/-project_id-/members/
+PATCH /projects/{project_id}/members/	Add/remove project members	https://crunch.io/api/reference/#patch-/projects/-project_id-/members/
+GET /projects/{project_id}/teams/	List teams with project access	https://crunch.io/api/reference/#get-/projects/-project_id-/teams/
+PATCH /projects/{project_id}/teams/	Add/remove teams from project	https://crunch.io/api/reference/#patch-/projects/-project_id-/teams/
+GET /projects/{project_id}/teams/{team_id}	List team project permissions	https://crunch.io/api/reference/#get-/projects/-project_id-/teams/-team_id-
+GET /projects/{project_id}/templates/	List project templates	https://crunch.io/api/reference/#get-/projects/-project_id-/templates/
+PATCH /projects/{project_id}/templates/	Remove project templates	https://crunch.io/api/reference/#patch-/projects/-project_id-/templates/
+POST /projects/{project_id}/templates/	Update project templates	https://crunch.io/api/reference/#post-/projects/-project_id-/templates/
+GET /projects/{project_id}/users/	List users with project access	https://crunch.io/api/reference/#get-/projects/-project_id-/users/
+PATCH /projects/{project_id}/users/	Add/remove users from project	https://crunch.io/api/reference/#patch-/projects/-project_id-/users/
+GET /projects/{project_id}/users/{user_id}/	List user project permissions	https://crunch.io/api/reference/#get-/projects/-project_id-/users/-user_id-/
+GET /dashboards/	List dashboards	https://crunch.io/api/reference/#get-/dashboards/
+POST /dashboards/	Create dashboard	https://crunch.io/api/reference/#post-/dashboards/
+GET /dashboards/{dashboard_id}/	Dashboard details	https://crunch.io/api/reference/#get-/dashboards/-dashboard_id-/
+GET /dashboards/{dashboard_id}/teams/	Teams that have access	https://crunch.io/api/reference/#get-/dashboards/-dashboard_id-/teams/
+GET /dashboards/{dashboard_id}/users/	Users that have access	https://crunch.io/api/reference/#get-/dashboards/-dashboard_id-/users/
+PATCH /dashboards/{dashboard_id}/users/	Update user's dashboard permissions	https://crunch.io/api/reference/#patch-/dashboards/-dashboard_id-/users/
+GET /integrations/	List integration partners	https://crunch.io/api/reference/#get-/integrations/
+GET /integrations/{integration_partner}/	List integration URLs	https://crunch.io/api/reference/#get-/integrations/-integration_partner-/
+POST /integrations/{integration_partner}/add_dataset/	Import partner dataset	https://crunch.io/api/reference/#post-/integrations/-integration_partner-/add_dataset/
+POST /integrations/{integration_partner}/update_dataset/	Update dataset with latest partner data	https://crunch.io/api/reference/#post-/integrations/-integration_partner-/update_dataset/
+POST /users/{user_id}/integrations	Store integration credentials	https://crunch.io/api/reference/#post-/users/-user_id-/integrations
+GET /users/{user_id}/integrations/{integration_id}/surveys	List datasets available for import	https://crunch.io/api/reference/#get-/users/-user_id-/integrations/-integration_id-/surveys

@@ -1,0 +1,674 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "description": "List of all analyses inside this slide",
+      "element": "shoji:catalog",
+      "index": {
+        "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/": {
+          "display_settings": {},
+          "query": {
+            "dimensions": [
+              {
+                "local": "v1.variables"
+              },
+              {
+                "local": "v1.subvariables"
+              },
+              {
+                "local": "v1.categories"
+              }
+            ],
+            "measures": {
+              "count": {
+                "args": [],
+                "function": "cube_count"
+              }
+            },
+            "with": {
+              "v1": {
+                "args": [
+                  [
+                    {
+                      "args": [
+                        {
+                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                        }
+                      ],
+                      "function": "as_selected"
+                    },
+                    {
+                      "args": [
+                        {
+                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                        }
+                      ],
+                      "function": "as_selected"
+                    }
+                  ]
+                ],
+                "function": "fuse"
+              }
+            }
+          },
+          "query_environment": {}
+        }
+      },
+      "self": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/"
+    }
+  ],
+  "required": [
+    "description",
+    "element",
+    "index",
+    "self"
+  ],
+  "properties": {
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The description schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "List of all analyses inside this slide"
+      ]
+    },
+    "element": {
+      "$id": "#/properties/element",
+      "type": "string",
+      "title": "The element schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "shoji:catalog"
+      ]
+    },
+    "index": {
+      "$id": "#/properties/index",
+      "type": "object",
+      "title": "The index schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/": {
+            "display_settings": {},
+            "query": {
+              "dimensions": [
+                {
+                  "local": "v1.variables"
+                },
+                {
+                  "local": "v1.subvariables"
+                },
+                {
+                  "local": "v1.categories"
+                }
+              ],
+              "measures": {
+                "count": {
+                  "args": [],
+                  "function": "cube_count"
+                }
+              },
+              "with": {
+                "v1": {
+                  "args": [
+                    [
+                      {
+                        "args": [
+                          {
+                            "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                          }
+                        ],
+                        "function": "as_selected"
+                      },
+                      {
+                        "args": [
+                          {
+                            "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                          }
+                        ],
+                        "function": "as_selected"
+                      }
+                    ]
+                  ],
+                  "function": "fuse"
+                }
+              }
+            },
+            "query_environment": {}
+          }
+        }
+      ],
+      "required": [
+        "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/"
+      ],
+      "properties": {
+        "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/": {
+          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/",
+          "type": "object",
+          "title": "The https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/ schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "display_settings": {},
+              "query": {
+                "dimensions": [
+                  {
+                    "local": "v1.variables"
+                  },
+                  {
+                    "local": "v1.subvariables"
+                  },
+                  {
+                    "local": "v1.categories"
+                  }
+                ],
+                "measures": {
+                  "count": {
+                    "args": [],
+                    "function": "cube_count"
+                  }
+                },
+                "with": {
+                  "v1": {
+                    "args": [
+                      [
+                        {
+                          "args": [
+                            {
+                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                            }
+                          ],
+                          "function": "as_selected"
+                        },
+                        {
+                          "args": [
+                            {
+                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                            }
+                          ],
+                          "function": "as_selected"
+                        }
+                      ]
+                    ],
+                    "function": "fuse"
+                  }
+                }
+              },
+              "query_environment": {}
+            }
+          ],
+          "required": [
+            "display_settings",
+            "query",
+            "query_environment"
+          ],
+          "properties": {
+            "display_settings": {
+              "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/display_settings",
+              "type": "object",
+              "title": "The display_settings schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {}
+              ],
+              "required": [],
+              "additionalProperties": true
+            },
+            "query": {
+              "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query",
+              "type": "object",
+              "title": "The query schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "dimensions": [
+                    {
+                      "local": "v1.variables"
+                    },
+                    {
+                      "local": "v1.subvariables"
+                    },
+                    {
+                      "local": "v1.categories"
+                    }
+                  ],
+                  "measures": {
+                    "count": {
+                      "args": [],
+                      "function": "cube_count"
+                    }
+                  },
+                  "with": {
+                    "v1": {
+                      "args": [
+                        [
+                          {
+                            "args": [
+                              {
+                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                              }
+                            ],
+                            "function": "as_selected"
+                          },
+                          {
+                            "args": [
+                              {
+                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                              }
+                            ],
+                            "function": "as_selected"
+                          }
+                        ]
+                      ],
+                      "function": "fuse"
+                    }
+                  }
+                }
+              ],
+              "required": [
+                "dimensions",
+                "measures",
+                "with"
+              ],
+              "properties": {
+                "dimensions": {
+                  "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/dimensions",
+                  "type": "array",
+                  "title": "The dimensions schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": [],
+                  "examples": [
+                    [
+                      {
+                        "local": "v1.variables"
+                      },
+                      {
+                        "local": "v1.subvariables"
+                      }
+                    ]
+                  ],
+                  "additionalItems": true,
+                  "items": {
+                    "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/dimensions/items",
+                    "anyOf": [
+                      {
+                        "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/dimensions/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                          {
+                            "local": "v1.variables"
+                          }
+                        ],
+                        "required": [
+                          "local"
+                        ],
+                        "properties": {
+                          "local": {
+                            "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/dimensions/items/anyOf/0/properties/local",
+                            "type": "string",
+                            "title": "The local schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                              "v1.variables"
+                            ]
+                          }
+                        },
+                        "additionalProperties": true
+                      }
+                    ]
+                  }
+                },
+                "measures": {
+                  "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/measures",
+                  "type": "object",
+                  "title": "The measures schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "count": {
+                        "args": [],
+                        "function": "cube_count"
+                      }
+                    }
+                  ],
+                  "required": [
+                    "count"
+                  ],
+                  "properties": {
+                    "count": {
+                      "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/measures/properties/count",
+                      "type": "object",
+                      "title": "The count schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "examples": [
+                        {
+                          "args": [],
+                          "function": "cube_count"
+                        }
+                      ],
+                      "required": [
+                        "args",
+                        "function"
+                      ],
+                      "properties": {
+                        "args": {
+                          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/measures/properties/count/properties/args",
+                          "type": "array",
+                          "title": "The args schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": [],
+                          "examples": [
+                            []
+                          ],
+                          "additionalItems": true,
+                          "items": {
+                            "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/measures/properties/count/properties/args/items"
+                          }
+                        },
+                        "function": {
+                          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/measures/properties/count/properties/function",
+                          "type": "string",
+                          "title": "The function schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "cube_count"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "with": {
+                  "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with",
+                  "type": "object",
+                  "title": "The with schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "v1": {
+                        "args": [
+                          [
+                            {
+                              "args": [
+                                {
+                                  "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                }
+                              ],
+                              "function": "as_selected"
+                            },
+                            {
+                              "args": [
+                                {
+                                  "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                }
+                              ],
+                              "function": "as_selected"
+                            }
+                          ]
+                        ],
+                        "function": "fuse"
+                      }
+                    }
+                  ],
+                  "required": [
+                    "v1"
+                  ],
+                  "properties": {
+                    "v1": {
+                      "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1",
+                      "type": "object",
+                      "title": "The v1 schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "examples": [
+                        {
+                          "args": [
+                            [
+                              {
+                                "args": [
+                                  {
+                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                  }
+                                ],
+                                "function": "as_selected"
+                              },
+                              {
+                                "args": [
+                                  {
+                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                  }
+                                ],
+                                "function": "as_selected"
+                              }
+                            ]
+                          ],
+                          "function": "fuse"
+                        }
+                      ],
+                      "required": [
+                        "args",
+                        "function"
+                      ],
+                      "properties": {
+                        "args": {
+                          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args",
+                          "type": "array",
+                          "title": "The args schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": [],
+                          "examples": [
+                            [
+                              [
+                                {
+                                  "args": [
+                                    {
+                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                    }
+                                  ],
+                                  "function": "as_selected"
+                                },
+                                {
+                                  "args": [
+                                    {
+                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                    }
+                                  ],
+                                  "function": "as_selected"
+                                }
+                              ]
+                            ]
+                          ],
+                          "additionalItems": true,
+                          "items": {
+                            "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items",
+                            "anyOf": [
+                              {
+                                "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0",
+                                "type": "array",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [
+                                  [
+                                    {
+                                      "args": [
+                                        {
+                                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                        }
+                                      ],
+                                      "function": "as_selected"
+                                    },
+                                    {
+                                      "args": [
+                                        {
+                                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                        }
+                                      ],
+                                      "function": "as_selected"
+                                    }
+                                  ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                  "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items",
+                                  "anyOf": [
+                                    {
+                                      "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items/anyOf/0",
+                                      "type": "object",
+                                      "title": "The first anyOf schema",
+                                      "description": "An explanation about the purpose of this instance.",
+                                      "default": {},
+                                      "examples": [
+                                        {
+                                          "args": [
+                                            {
+                                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                            }
+                                          ],
+                                          "function": "as_selected"
+                                        }
+                                      ],
+                                      "required": [
+                                        "args",
+                                        "function"
+                                      ],
+                                      "properties": {
+                                        "args": {
+                                          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items/anyOf/0/properties/args",
+                                          "type": "array",
+                                          "title": "The args schema",
+                                          "description": "An explanation about the purpose of this instance.",
+                                          "default": [],
+                                          "examples": [
+                                            [
+                                              {
+                                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                              }
+                                            ]
+                                          ],
+                                          "additionalItems": true,
+                                          "items": {
+                                            "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items/anyOf/0/properties/args/items",
+                                            "anyOf": [
+                                              {
+                                                "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items/anyOf/0/properties/args/items/anyOf/0",
+                                                "type": "object",
+                                                "title": "The first anyOf schema",
+                                                "description": "An explanation about the purpose of this instance.",
+                                                "default": {},
+                                                "examples": [
+                                                  {
+                                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                                  }
+                                                ],
+                                                "required": [
+                                                  "variable"
+                                                ],
+                                                "properties": {
+                                                  "variable": {
+                                                    "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items/anyOf/0/properties/args/items/anyOf/0/properties/variable",
+                                                    "type": "string",
+                                                    "title": "The variable schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                      "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                                    ]
+                                                  }
+                                                },
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        "function": {
+                                          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/args/items/anyOf/0/items/anyOf/0/properties/function",
+                                          "type": "string",
+                                          "title": "The function schema",
+                                          "description": "An explanation about the purpose of this instance.",
+                                          "default": "",
+                                          "examples": [
+                                            "as_selected"
+                                          ]
+                                        }
+                                      },
+                                      "additionalProperties": true
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "function": {
+                          "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query/properties/with/properties/v1/properties/function",
+                          "type": "string",
+                          "title": "The function schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "fuse"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": true
+            },
+            "query_environment": {
+              "$id": "#/properties/index/properties/https%3A//app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336//properties/query_environment",
+              "type": "object",
+              "title": "The query_environment schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {}
+              ],
+              "required": [],
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "self": {
+      "$id": "#/properties/self",
+      "type": "string",
+      "title": "The self schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

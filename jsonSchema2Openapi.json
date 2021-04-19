@@ -1,0 +1,559 @@
+{
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "required": [
+    "body",
+    "description",
+    "element",
+    "self"
+  ],
+  "properties": {
+    "body": {
+      "type": "object",
+      "title": "The body schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "required": [
+        "display_settings",
+        "id",
+        "query",
+        "query_environment",
+        "transform",
+        "viz_specs"
+      ],
+      "properties": {
+        "display_settings": {
+          "type": "object",
+          "title": "The display_settings schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "required": [],
+          "additionalProperties": true,
+          "example": {}
+        },
+        "id": {
+          "type": "string",
+          "title": "The id schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "example": "2049af9d9fa645edb3b595f51f9dc336"
+        },
+        "query": {
+          "type": "object",
+          "title": "The query schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "required": [
+            "dimensions",
+            "measures",
+            "with"
+          ],
+          "properties": {
+            "dimensions": {
+              "type": "array",
+              "title": "The dimensions schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": [],
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "title": "The first anyOf schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "required": [
+                      "local"
+                    ],
+                    "properties": {
+                      "local": {
+                        "type": "string",
+                        "title": "The local schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "example": "v1.variables"
+                      }
+                    },
+                    "additionalProperties": true,
+                    "example": {
+                      "local": "v1.variables"
+                    }
+                  }
+                ]
+              },
+              "example": [
+                {
+                  "local": "v1.variables"
+                },
+                {
+                  "local": "v1.subvariables"
+                }
+              ],
+              "x-additionalItems": true
+            },
+            "measures": {
+              "type": "object",
+              "title": "The measures schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "required": [
+                "count"
+              ],
+              "properties": {
+                "count": {
+                  "type": "object",
+                  "title": "The count schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "required": [
+                    "args",
+                    "function"
+                  ],
+                  "properties": {
+                    "args": {
+                      "type": "array",
+                      "title": "The args schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": [],
+                      "items": {},
+                      "example": [],
+                      "x-additionalItems": true
+                    },
+                    "function": {
+                      "type": "string",
+                      "title": "The function schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": "",
+                      "example": "cube_count"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "example": {
+                    "args": [],
+                    "function": "cube_count"
+                  }
+                }
+              },
+              "additionalProperties": true,
+              "example": {
+                "count": {
+                  "args": [],
+                  "function": "cube_count"
+                }
+              }
+            },
+            "with": {
+              "type": "object",
+              "title": "The with schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "required": [
+                "v1"
+              ],
+              "properties": {
+                "v1": {
+                  "type": "object",
+                  "title": "The v1 schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "required": [
+                    "args",
+                    "function"
+                  ],
+                  "properties": {
+                    "args": {
+                      "type": "array",
+                      "title": "The args schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": [],
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "array",
+                            "title": "The first anyOf schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": [],
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "title": "The first anyOf schema",
+                                  "description": "An explanation about the purpose of this instance.",
+                                  "default": {},
+                                  "required": [
+                                    "args",
+                                    "function"
+                                  ],
+                                  "properties": {
+                                    "args": {
+                                      "type": "array",
+                                      "title": "The args schema",
+                                      "description": "An explanation about the purpose of this instance.",
+                                      "default": [],
+                                      "items": {
+                                        "anyOf": [
+                                          {
+                                            "type": "object",
+                                            "title": "The first anyOf schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "required": [
+                                              "variable"
+                                            ],
+                                            "properties": {
+                                              "variable": {
+                                                "type": "string",
+                                                "title": "The variable schema",
+                                                "description": "An explanation about the purpose of this instance.",
+                                                "default": "",
+                                                "example": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                              }
+                                            },
+                                            "additionalProperties": true,
+                                            "example": {
+                                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "example": [
+                                        {
+                                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                        }
+                                      ],
+                                      "x-additionalItems": true
+                                    },
+                                    "function": {
+                                      "type": "string",
+                                      "title": "The function schema",
+                                      "description": "An explanation about the purpose of this instance.",
+                                      "default": "",
+                                      "example": "as_selected"
+                                    }
+                                  },
+                                  "additionalProperties": true,
+                                  "example": {
+                                    "args": [
+                                      {
+                                        "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                      }
+                                    ],
+                                    "function": "as_selected"
+                                  }
+                                }
+                              ]
+                            },
+                            "example": [
+                              {
+                                "args": [
+                                  {
+                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                  }
+                                ],
+                                "function": "as_selected"
+                              },
+                              {
+                                "args": [
+                                  {
+                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                  }
+                                ],
+                                "function": "as_selected"
+                              }
+                            ],
+                            "x-additionalItems": true
+                          }
+                        ]
+                      },
+                      "example": [
+                        [
+                          {
+                            "args": [
+                              {
+                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                              }
+                            ],
+                            "function": "as_selected"
+                          },
+                          {
+                            "args": [
+                              {
+                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                              }
+                            ],
+                            "function": "as_selected"
+                          }
+                        ]
+                      ],
+                      "x-additionalItems": true
+                    },
+                    "function": {
+                      "type": "string",
+                      "title": "The function schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": "",
+                      "example": "fuse"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "example": {
+                    "args": [
+                      [
+                        {
+                          "args": [
+                            {
+                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                            }
+                          ],
+                          "function": "as_selected"
+                        },
+                        {
+                          "args": [
+                            {
+                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                            }
+                          ],
+                          "function": "as_selected"
+                        }
+                      ]
+                    ],
+                    "function": "fuse"
+                  }
+                }
+              },
+              "additionalProperties": true,
+              "example": {
+                "v1": {
+                  "args": [
+                    [
+                      {
+                        "args": [
+                          {
+                            "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                          }
+                        ],
+                        "function": "as_selected"
+                      },
+                      {
+                        "args": [
+                          {
+                            "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                          }
+                        ],
+                        "function": "as_selected"
+                      }
+                    ]
+                  ],
+                  "function": "fuse"
+                }
+              }
+            }
+          },
+          "additionalProperties": true,
+          "example": {
+            "dimensions": [
+              {
+                "local": "v1.variables"
+              },
+              {
+                "local": "v1.subvariables"
+              },
+              {
+                "local": "v1.categories"
+              }
+            ],
+            "measures": {
+              "count": {
+                "args": [],
+                "function": "cube_count"
+              }
+            },
+            "with": {
+              "v1": {
+                "args": [
+                  [
+                    {
+                      "args": [
+                        {
+                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                        }
+                      ],
+                      "function": "as_selected"
+                    },
+                    {
+                      "args": [
+                        {
+                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                        }
+                      ],
+                      "function": "as_selected"
+                    }
+                  ]
+                ],
+                "function": "fuse"
+              }
+            }
+          }
+        },
+        "query_environment": {
+          "type": "object",
+          "title": "The query_environment schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "required": [],
+          "additionalProperties": true,
+          "example": {}
+        },
+        "transform": {
+          "type": "object",
+          "title": "The transform schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "required": [],
+          "additionalProperties": true,
+          "example": {}
+        },
+        "viz_specs": {
+          "type": "object",
+          "title": "The viz_specs schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "required": [],
+          "additionalProperties": true,
+          "example": {}
+        }
+      },
+      "additionalProperties": true,
+      "example": {
+        "display_settings": {},
+        "id": "2049af9d9fa645edb3b595f51f9dc336",
+        "query": {
+          "dimensions": [
+            {
+              "local": "v1.variables"
+            },
+            {
+              "local": "v1.subvariables"
+            },
+            {
+              "local": "v1.categories"
+            }
+          ],
+          "measures": {
+            "count": {
+              "args": [],
+              "function": "cube_count"
+            }
+          },
+          "with": {
+            "v1": {
+              "args": [
+                [
+                  {
+                    "args": [
+                      {
+                        "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                      }
+                    ],
+                    "function": "as_selected"
+                  },
+                  {
+                    "args": [
+                      {
+                        "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                      }
+                    ],
+                    "function": "as_selected"
+                  }
+                ]
+              ],
+              "function": "fuse"
+            }
+          }
+        },
+        "query_environment": {},
+        "transform": {},
+        "viz_specs": {}
+      }
+    },
+    "description": {
+      "type": "string",
+      "title": "The description schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "example": "Data to build a given analysis"
+    },
+    "element": {
+      "type": "string",
+      "title": "The element schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "example": "shoji:entity"
+    },
+    "self": {
+      "type": "string",
+      "title": "The self schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "example": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/"
+    }
+  },
+  "additionalProperties": true,
+  "example": {
+    "body": {
+      "display_settings": {},
+      "id": "2049af9d9fa645edb3b595f51f9dc336",
+      "query": {
+        "dimensions": [
+          {
+            "local": "v1.variables"
+          },
+          {
+            "local": "v1.subvariables"
+          },
+          {
+            "local": "v1.categories"
+          }
+        ],
+        "measures": {
+          "count": {
+            "args": [],
+            "function": "cube_count"
+          }
+        },
+        "with": {
+          "v1": {
+            "args": [
+              [
+                {
+                  "args": [
+                    {
+                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                    }
+                  ],
+                  "function": "as_selected"
+                },
+                {
+                  "args": [
+                    {
+                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                    }
+                  ],
+                  "function": "as_selected"
+                }
+              ]
+            ],
+            "function": "fuse"
+          }
+        }
+      },
+      "query_environment": {},
+      "transform": {},
+      "viz_specs": {}
+    },
+    "description": "Data to build a given analysis",
+    "element": "shoji:entity",
+    "self": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/"
+  }
+}

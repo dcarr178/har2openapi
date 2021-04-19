@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.listEndpoints = exports.postProduction = exports.parseHarFileIntoIndividualFiles = exports.updateXcode = exports.mergeFiles = exports.generateSchema = exports.generateSpec = exports.generateSamples = void 0;
 const openapi_v3_types_1 = require("@loopback/openapi-v3-types");
 const merge = require("deepmerge");
 const fs_1 = require("fs");
@@ -19,7 +20,8 @@ const process_1 = require("process");
 const sortJson = require("sort-json");
 const quicktype_core_1 = require("quicktype-core");
 const deref = require("json-schema-deref-sync");
-const toOpenApiSchema = require("json-schema-to-openapi-schema");
+const toOpenApiSchema = require("@openapi-contrib/json-schema-to-openapi-schema");
+const recursive = require("recursive-readdir");
 const pad = (m, width, z = '0') => {
     const n = m.toString();
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
@@ -198,37 +200,80 @@ const combineMerge = (target, source, options) => {
 const createXcodeSamples = (spec) => {
     Object.keys(spec.paths).forEach(path => {
         Object.keys(spec.paths[path]).forEach(lMethod => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x;
             if (lMethod === 'parameters')
                 return;
             const method = spec.paths[path][lMethod];
             const samples = [];
+            const scrubbedPath = path
+                .replace(/{dataset_id}/g, '0001a')
+                .replace(/{variable_id}/g, '0001b')
+                .replace(/{user_id}/g, '0001c')
+                .replace(/{subvariable_id}/g, '0001d')
+                .replace(/{folder_id}/g, '0001e')
+                .replace(/{slide_id}/g, '0001f')
+                .replace(/{deck_id}/g, '0001g')
+                .replace(/{analysis_id}/g, '0001h')
+                .replace(/{tag_name}/g, '0001i')
+                .replace(/{project_id}/g, '0001j')
+                .replace(/{integration_id}/g, '0001k')
+                .replace(/{integration_partner}/g, '0001l')
+                .replace(/{team_id}/g, '0001m')
+                .replace(/{savepoint_id}/g, '0001n')
+                .replace(/{script_id}/g, '0001o')
+                .replace(/{multitable_id}/g, '0001p')
+                .replace(/{subdomain}/g, '0001q')
+                .replace(/{account_id}/g, '0001r')
+                .replace(/{filter_id}/g, '0001s')
+                .replace(/{geodata_id}/g, '0001t')
+                .replace(/{task_id}/g, '0001u')
+                .replace(/{flag_id}/g, '0001v')
+                .replace(/{source_id}/g, '0001w')
+                .replace(/{batch_id}/g, '0001x')
+                .replace(/{action_hash}/g, '0001y')
+                .replace(/{boxdata_id}/g, '0001z')
+                .replace(/{datasetName}/g, '0001aa')
+                .replace(/{format}/g, '0001ab')
+                .replace(/{dashboard_id}/g, '0001ac');
+            if (!method['x-code-samples'])
+                method['x-code-samples'] = [];
             let data;
-            let curlCode = `curl -X ${lMethod.toUpperCase()} ${method.meta.originalPath}`;
-            if (!method.meta.originalPath.includes('public'))
+            const originalPath = `https://app.crunch.io/api${((_a = method === null || method === void 0 ? void 0 : method.meta) === null || _a === void 0 ? void 0 : _a.originalPath) || scrubbedPath}`;
+            let curlCode = `curl -X ${lMethod.toUpperCase()} ${originalPath}`;
+            if (!originalPath.includes('public'))
                 curlCode += ` \\\n  -H 'Authorization: Bearer 598d9e1105'`;
-            const examples = (_c = (_b = (_a = method.requestBody) === null || _a === void 0 ? void 0 : _a.content) === null || _b === void 0 ? void 0 : _b["application/json"]) === null || _c === void 0 ? void 0 : _c.examples;
+            const examples = (_d = (_c = (_b = method.requestBody) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c["application/json"]) === null || _d === void 0 ? void 0 : _d.examples;
             if (examples) {
                 const exampleList = Object.keys(examples);
                 if (exampleList.length) {
                     const firstExample = exampleList[0];
-                    data = (_h = (_g = (_f = (_e = (_d = method.requestBody) === null || _d === void 0 ? void 0 : _d.content) === null || _e === void 0 ? void 0 : _e["application/json"]) === null || _f === void 0 ? void 0 : _f.examples) === null || _g === void 0 ? void 0 : _g[firstExample]) === null || _h === void 0 ? void 0 : _h.value;
+                    data = (_j = (_h = (_g = (_f = (_e = method.requestBody) === null || _e === void 0 ? void 0 : _e.content) === null || _f === void 0 ? void 0 : _f["application/json"]) === null || _g === void 0 ? void 0 : _g.examples) === null || _h === void 0 ? void 0 : _h[firstExample]) === null || _j === void 0 ? void 0 : _j.value;
                 }
             }
             if (data) {
                 curlCode += ` \\\n  -H 'Content-Type: application/json'`;
                 curlCode += ` -d '\n${JSON.stringify(data, null, 2)}\n'`;
             }
-            samples.push({
+            let found = false;
+            const shellCodeSample = {
                 lang: "SHELL",
                 source: replaceApos(curlCode),
                 syntaxLang: "bash"
-            });
+            };
+            for (let codeSample in method['x-code-samples']) {
+                if (method['x-code-samples'][codeSample].lang == "SHELL") {
+                    found = true;
+                    method['x-code-samples'][codeSample] = shellCodeSample;
+                }
+            }
+            if (!found) {
+                method['x-code-samples'].push(shellCodeSample);
+            }
             const operationVariable = method.operationId.split('-').map((part, index) => index ? capitalize(part) : part).join('').trim();
             let jsCode = [];
             let urlVar = "";
-            if (method.meta.originalPath.includes("?")) {
-                const pieces = method.meta.originalPath.split('?');
+            if (originalPath.includes("?")) {
+                const pieces = originalPath.split('?');
                 urlVar = operationVariable + 'URL';
                 jsCode.push(`const ${urlVar} = new URL('${pieces[0]}')`);
                 jsCode.push(`${urlVar}.search = new URLSearchParams({`);
@@ -239,9 +284,9 @@ const createXcodeSamples = (spec) => {
                 jsCode.push(`})`);
             }
             jsCode.push(`const ${operationVariable} = await fetch(`);
-            jsCode.push(`  ${urlVar || "'" + method.meta.originalPath + "'"}, {`);
+            jsCode.push(`  ${urlVar || "'" + originalPath + "'"}, {`);
             jsCode.push(`   method: '${lMethod.toUpperCase()}',`);
-            if (!method.meta.originalPath.includes('public')) {
+            if (!originalPath.includes('public')) {
                 jsCode.push(`   headers: {`);
                 jsCode.push(`    'Authorization': 'Bearer 598d9e1105'`);
                 if (data) {
@@ -257,9 +302,9 @@ const createXcodeSamples = (spec) => {
             }
             jsCode.push(` })`);
             const firstResponse = Object.keys(method.responses)[0] || "";
-            if ((_p = (_o = (_m = (_l = (_k = (_j = method.responses) === null || _j === void 0 ? void 0 : _j[firstResponse]) === null || _k === void 0 ? void 0 : _k.content) === null || _l === void 0 ? void 0 : _l["application/json"]) === null || _m === void 0 ? void 0 : _m.examples) === null || _o === void 0 ? void 0 : _o['example-1']) === null || _p === void 0 ? void 0 : _p.value) {
+            if ((_q = (_p = (_o = (_m = (_l = (_k = method.responses) === null || _k === void 0 ? void 0 : _k[firstResponse]) === null || _l === void 0 ? void 0 : _l.content) === null || _m === void 0 ? void 0 : _m["application/json"]) === null || _o === void 0 ? void 0 : _o.examples) === null || _p === void 0 ? void 0 : _p['example-1']) === null || _q === void 0 ? void 0 : _q.value) {
                 jsCode.push(` .then(response => response.json())`);
-                switch (method.meta.element) {
+                switch ((_x = (_w = (_v = (_u = (_t = (_s = (_r = method.responses) === null || _r === void 0 ? void 0 : _r[firstResponse]) === null || _s === void 0 ? void 0 : _s.content) === null || _t === void 0 ? void 0 : _t["application/json"]) === null || _u === void 0 ? void 0 : _u.examples) === null || _v === void 0 ? void 0 : _v['example-1']) === null || _w === void 0 ? void 0 : _w.value) === null || _x === void 0 ? void 0 : _x.element) {
                     case 'shoji:catalog':
                         jsCode.push(` .then(jsonResponse => jsonResponse.index)`);
                         break;
@@ -271,12 +316,21 @@ const createXcodeSamples = (spec) => {
                         break;
                 }
             }
-            samples.push({
+            found = false;
+            const jsCodeSample = {
                 "lang": "JAVASCRIPT",
                 "source": replaceApos(jsCode.join('\n')),
                 "syntaxLang": "javascript"
-            });
-            method['x-code-samples'] = samples;
+            };
+            for (let codeSample in method['x-code-samples']) {
+                if (method['x-code-samples'][codeSample].lang == "JAVASCRIPT") {
+                    found = true;
+                    method['x-code-samples'][codeSample] = jsCodeSample;
+                }
+            }
+            if (!found) {
+                method['x-code-samples'].push(jsCodeSample);
+            }
         });
     });
 };
@@ -514,6 +568,28 @@ const mergeResponseExample = (specMethod, statusString, content, method, filtere
     }
 };
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
+const parseHarFileIntoIndividualFiles = (filename) => {
+    const file = fs_1.readFileSync(`input/${filename}`, 'utf8');
+    try {
+        const data = JSON.parse(file);
+        if (!data.log) {
+            console.log('Invalid har file');
+            process_1.exit(1);
+        }
+        data.log.entries.forEach((item, index) => {
+            if (item.response.content.encoding === 'base64') {
+                data.log.entries[index].response.content.text = Buffer.from(item.response.content.text, 'base64').toString();
+                delete data.log.entries[index].response.content.encoding;
+            }
+            fs_1.writeFileSync(`output/individualHars/${filename.replace(/\//g, '-')}-${index}.json`, JSON.stringify(data.log.entries[index], null, 2));
+        });
+    }
+    catch (err) {
+        console.log(`${filename} contains invalid json`);
+        process_1.exit(1);
+    }
+};
+exports.parseHarFileIntoIndividualFiles = parseHarFileIntoIndividualFiles;
 const parseHarFile = (filename) => {
     const file = fs_1.readFileSync(filename, 'utf8');
     try {
@@ -762,7 +838,11 @@ const generateSchema = (exampleFilename) => __awaiter(void 0, void 0, void 0, fu
                             "application/json": {}
                         }
                     };
-                methodObject.requestBody.content["application/json"].schema = toOpenApiSchema(jsonSchema);
+                methodObject.requestBody.content["application/json"].schema = yield toOpenApiSchema(jsonSchema)
+                    .catch(err => {
+                    console.log('ERROR CONVERTING TO OPENAPI SCHEMA, USING JSON SCHEMA');
+                    methodObject.requestBody.content["application/json"].schema = jsonSchema;
+                });
                 methodObject.requestBody.content["application/json"].examples = exampleStats.publishExamples;
             }
             for (const statusCode in masterExamples[path][method].response) {
@@ -797,7 +877,11 @@ const generateSchema = (exampleFilename) => __awaiter(void 0, void 0, void 0, fu
                             }
                         };
                     }
-                    methodObject.responses[statusCode].content["application/json"].schema = toOpenApiSchema(jsonSchema);
+                    methodObject.responses[statusCode].content["application/json"].schema = yield toOpenApiSchema(jsonSchema)
+                        .catch(err => {
+                        console.log('ERROR CONVERTING TO OPENAPI SCHEMA, USING JSON SCHEMA');
+                        methodObject.responses[statusCode].content["application/json"].schema = jsonSchema;
+                    });
                     methodObject.responses[statusCode].content["application/json"].examples = exampleStats.publishExamples;
                 }
             }
@@ -806,3 +890,129 @@ const generateSchema = (exampleFilename) => __awaiter(void 0, void 0, void 0, fu
     return newSpec;
 });
 exports.generateSchema = generateSchema;
+const updateXcode = (filename) => {
+    console.log(filename);
+    const file = YAML.safeLoad(fs_1.readFileSync(filename));
+    createXcodeSamples(file);
+    fs_1.writeFileSync(filename, YAML.safeDump(file));
+};
+exports.updateXcode = updateXcode;
+const QAPaths = (spec) => {
+    Object.keys(spec.paths).forEach(path => {
+        Object.keys(spec.paths[path]).forEach(lMethod => {
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s;
+            if (lMethod === 'parameters')
+                return;
+            const method = spec.paths[path][lMethod];
+            const examples = (_c = (_b = (_a = method.requestBody) === null || _a === void 0 ? void 0 : _a.content) === null || _b === void 0 ? void 0 : _b["application/json"]) === null || _c === void 0 ? void 0 : _c.examples;
+            let firstExample;
+            if (examples) {
+                const exampleList = Object.keys(examples);
+                for (let exampleName of exampleList) {
+                    const exampleData = (_h = (_g = (_f = (_e = (_d = method.requestBody) === null || _d === void 0 ? void 0 : _d.content) === null || _e === void 0 ? void 0 : _e["application/json"]) === null || _f === void 0 ? void 0 : _f.examples) === null || _g === void 0 ? void 0 : _g[exampleName]) === null || _h === void 0 ? void 0 : _h.value;
+                    if (!firstExample)
+                        firstExample = exampleData;
+                    const elementType = exampleData.element;
+                    if (!elementType) {
+                        console.log(path, lMethod, exampleName, 'NO SHOJI ELEMENT');
+                    }
+                }
+            }
+            const requestSchemaElement = (_o = (_m = (_l = (_k = (_j = method.requestBody) === null || _j === void 0 ? void 0 : _j.content) === null || _k === void 0 ? void 0 : _k["application/json"]) === null || _l === void 0 ? void 0 : _l.schema) === null || _m === void 0 ? void 0 : _m.properties) === null || _o === void 0 ? void 0 : _o.element;
+            if (requestSchemaElement) {
+                if (!requestSchemaElement['$ref']) {
+                    console.log(requestSchemaElement);
+                    console.log('element', firstExample.element);
+                    switch (firstExample.element) {
+                        case "shoji:order":
+                            method.requestBody.content["application/json"].schema.properties.element = { '$ref': '#/components/schemas/Shoji-order-element' };
+                            break;
+                        case "shoji:entity":
+                            method.requestBody.content["application/json"].schema.properties.element = { '$ref': '#/components/schemas/Shoji-entity-element' };
+                            break;
+                        case "shoji:catalog":
+                            method.requestBody.content["application/json"].schema.properties.element = { '$ref': '#/components/schemas/Shoji-catalog-element' };
+                            break;
+                        case "shoji:view":
+                            method.requestBody.content["application/json"].schema.properties.element = { '$ref': '#/components/schemas/Shoji-view-element' };
+                            break;
+                    }
+                }
+            }
+            if (method.responses) {
+                for (let responseCode in method.responses) {
+                    if (responseCode == '404') {
+                        const responseExampleMessage = (_s = (_r = (_q = (_p = method.responses[responseCode].content) === null || _p === void 0 ? void 0 : _p['application/json']) === null || _q === void 0 ? void 0 : _q.examples['example-1']) === null || _r === void 0 ? void 0 : _r.value) === null || _s === void 0 ? void 0 : _s.message;
+                        if (responseExampleMessage == 'Nothing matches the given URI') {
+                            console.log(responseExampleMessage);
+                            delete method.responses[responseCode];
+                        }
+                    }
+                    if (responseCode == '202') {
+                        method.responses[responseCode] = {
+                            "content": {
+                                "application/json": {
+                                    "examples": {
+                                        "example-1": {
+                                            "value": {
+                                                "element": "shoji:view",
+                                                "self": "https://app.crunch.io/api/datasets/a5a3d3890a6e453d85662e9c66a9b7e9/decks/5f9720247f1145d6918d0a4463b17131/export/",
+                                                "value": "https://app.crunch.io/api/progress/3Aa5a3d3890a6e453d85662e9c66a9b7e9%24a3af7cb7765f3fee01c49225bf34415d/"
+                                            }
+                                        }
+                                    },
+                                    "schema": {
+                                        "$ref": '#/components/schemas/202-response'
+                                    }
+                                }
+                            },
+                            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
+                            "headers": {
+                                "Location": {
+                                    "description": "URL for resource requested, available when the asynchronous task has completed.",
+                                    "schema": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        };
+                    }
+                }
+            }
+        });
+    });
+};
+const postProduction = () => {
+    const yamlFiles = [];
+    recursive("/home/dcarr/git/crunch/zoom/server/src/cr/server/api", ["*.py*"], function (err, files) {
+        for (const filename of files) {
+            if (filename.includes("openapi") && !filename.includes("openapi.json")) {
+                console.log(`ANALYZING OPENAPI FILE ${filename}`);
+                const file = YAML.safeLoad(fs_1.readFileSync(filename));
+                createXcodeSamples(file);
+                QAPaths(file);
+                fs_1.writeFileSync(filename, YAML.safeDump(file));
+            }
+        }
+    });
+};
+exports.postProduction = postProduction;
+const listEndpoints = () => {
+    const file = fs_1.readFileSync('/home/dcarr/git/crunch/zoom/server/src/cr/server/api/static/openapi.json', 'utf8');
+    const spec = JSON.parse(file);
+    Object.keys(spec.paths).forEach(path => {
+        Object.keys(spec.paths[path]).forEach(lMethod => {
+            if (lMethod !== 'parameters') {
+                const method = spec.paths[path][lMethod];
+                const methodPath = `${lMethod.toUpperCase()} ${path}`;
+                const url = `https://crunch.io/api/reference/#${lMethod}-${path.replace(/[{}]/g, '-')}`;
+                console.log([
+                    methodPath,
+                    method.summary,
+                    url
+                ].join('\t'));
+            }
+        });
+    });
+};
+exports.listEndpoints = listEndpoints;
