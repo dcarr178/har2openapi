@@ -17,7 +17,7 @@ There are many other ways to generate HAR files so go crazy. Google is your frie
 ## Step 2 - Generate request/response examples
 Start by copying `config.json.template` to `config.json`. Once you have a valid config.json file, run
 ``` bash
-node index.js generate outputFilename.json inputHarFile1.json inputHarFile2.json inputHarFile3.json...
+node index.js examples outputFilename.json inputHarFile1.json inputHarFile2.json inputHarFile3.json...
 ```
 
 This command consumes one or more HAR files and outputs an OAS file. A few additional files are created for your convenience:
