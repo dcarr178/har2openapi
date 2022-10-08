@@ -4,7 +4,7 @@ This program automatically creates API documentation via a OpenApi Spec (OAS) fi
 one or more HAR files.
 
 ## Step 1 - Create HAR file(s)
-There are lots of ways to create HAR files to use as input for this program. One way is to manually click your way
+There are lots of ways to create [HAR files](https://en.wikipedia.org/wiki/HAR_(file_format)) to use as input for this program. One way is to manually click your way
 through a web application and capture network requests in Chrome as illustrated in this [handy guide](https://help.o2.verizonmedia.com/hc/en-us/articles/360000074523-How-to-Save-a-HAR-File-Log-in-Google-Chrome).
 
 Another way to generate HAR files is to install [Charles Proxy](https://www.charlesproxy.com/) and then run all your
